@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import Link from "next/Link";
+import Link from "next/link";
 import {Col, Container, Row} from "react-bootstrap";
 import {FaFacebookF, FaInstagram, FaTwitter, FaYoutube} from "react-icons/fa";
 import {IoIosArrowRoundUp} from "react-icons/io";
