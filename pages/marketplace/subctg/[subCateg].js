@@ -3,12 +3,16 @@ import Link from "next/link";
 import {Col, Container, Row} from "react-bootstrap";
 import Paginator from "react-hooks-paginator";
 import {SlideDown} from "react-slidedown";
-import {getSortedProducts} from "../../../lib/product";
-import {ShopFilter, ShopHeader, ShopProducts, ShopSidebar} from "../../../components/Shop";
 import BasicLayout from "../../../components/layout/BasicLayout";
+import {getSortedProducts} from "../../../lib/product";
 import BreadcrumbOne from "../../../components/Breadcrumb/BreadcrumbOne";
+import ShopHeader from "../../../components/Shop/ShopHeader";
+import ShopFilter from "../../../components/Shop/ShopFilter";
+import ShopSidebar from "../../../components/Shop/ShopSidebar";
+import ShopProducts from "../../../components/Shop/ShopProducts";
+import productsFake from "../../../data/products.json";
 
-const MarketplaceCat = ({products}) => {
+const SubCategoryPage = ({ products }) => {
     const [layout, setLayout] = useState("grid four-column");
     const [sortType, setSortType] = useState("");
     const [sortValue, setSortValue] = useState("");
@@ -37,10 +41,6 @@ const MarketplaceCat = ({products}) => {
     };
 
     useEffect(() => {
-        if (!products) {
-            products = []
-        }
-
         let sortedProducts = getSortedProducts(products, sortType, sortValue);
         const filterSortedProducts = getSortedProducts(
             sortedProducts,
@@ -56,7 +56,7 @@ const MarketplaceCat = ({products}) => {
         <BasicLayout>
             {/* breadcrumb */}
             <BreadcrumbOne
-                pageTitle="Shop Left Sidebar"
+                pageTitle="Test"
                 backgroundImage="/assets/images/backgrounds/breadcrumb-bg-1.png"
             >
                 <ul className="breadcrumb__list">
@@ -66,7 +66,7 @@ const MarketplaceCat = ({products}) => {
                         </Link>
                     </li>
 
-                    <li>Shop Left Sidebar</li>
+                    <li>test</li>
                 </ul>
             </BreadcrumbOne>
             <div className="shop-page-content">
@@ -74,20 +74,21 @@ const MarketplaceCat = ({products}) => {
                 <ShopHeader
                     getLayout={getLayout}
                     getFilterSortParams={getFilterSortParams}
-                    productCount={products?.length}
+                    productCount={products.length}
                     sortedProductCount={currentData.length}
                     shopTopFilterStatus={shopTopFilterStatus}
                     setShopTopFilterStatus={setShopTopFilterStatus}
+                    layoutClass="wide"
                 />
 
                 {/* shop header filter */}
                 <SlideDown closed={shopTopFilterStatus ? false : true}>
-                    <ShopFilter products={products} getSortParams={getSortParams}/>
+                    <ShopFilter products={products} getSortParams={getSortParams} />
                 </SlideDown>
 
                 {/* shop page body */}
                 <div className="shop-page-content__body space-mt--r130 space-mb--r130">
-                    <Container>
+                    <Container className="wide">
                         <Row>
                             <Col
                                 lg={3}
@@ -102,7 +103,7 @@ const MarketplaceCat = ({products}) => {
 
                             <Col lg={9} className="order-1 order-lg-2">
                                 {/* shop products */}
-                                <ShopProducts layout={layout} products={currentData}/>
+                                <ShopProducts layout={layout} products={currentData} />
 
                                 {/* shop product pagination */}
                                 <div className="pro-pagination-style">
@@ -127,4 +128,16 @@ const MarketplaceCat = ({products}) => {
     );
 };
 
-export default MarketplaceCat;
+export async function getServerSideProps({params: {subCateg}}) {
+    // const res = await getData(`product/${id}`);
+
+    const products = await productsFake;
+
+    return {
+        props: {
+            products: products,
+        },
+    }
+}
+
+export default SubCategoryPage;

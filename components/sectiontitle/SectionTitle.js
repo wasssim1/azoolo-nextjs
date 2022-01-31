@@ -1,4 +1,4 @@
-const SectionTitleThree = ({ title, subtitle }) => {
+const SectionTitle = ({ title, subtitle }) => {
   return (
     <div className="section-title-container text-center space-mb--r80">
       <h2 className={`section-title ${subtitle ? "space-mb--20" : ""}`}>
@@ -15,4 +15,4 @@ const SectionTitleThree = ({ title, subtitle }) => {
   );
 };
 
-export default SectionTitleThree;
+export default SectionTitle;

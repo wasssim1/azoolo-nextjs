@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "image": "/assets/images/category/men.jpg",
+    "name": "Categ 1",
+    "count": 12,
+    "url": "/marketplace/ctg/mode"
+  },
+  {
+    "id": "2",
+    "image": "/assets/images/category/shoes.jpg",
+    "name": "Categ 2",
+    "count": 23,
+    "url": "/marketplace/ctg/mode"
+  },
+  {
+    "id": "3",
+    "image": "/assets/images/category/sunglasses.jpg",
+    "name": "Categ 3",
+    "count": 13,
+    "url": "/marketplace/ctg/mode"
+  },
+  {
+    "id": "4",
+    "image": "/assets/images/category/cat-look-book.jpg",
+    "name": "Categ 4",
+    "count": 40,
+    "url": "/marketplace/ctg/mode"
+  },
+  {
+    "id": "5",
+    "image": "/assets/images/category/women.jpg",
+    "name": "Categ 5",
+    "count": 10,
+    "url": "/marketplace/ctg/mode"
+  }
+]
