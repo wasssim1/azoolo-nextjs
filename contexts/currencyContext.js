@@ -15,6 +15,9 @@ export const CurrencyProvider = (props) => {
     const changeCurrency = (currency) => {
         localStorage.setItem('current-currency', currency);
         setCurrentCurrency(currency);
+        if (currency === CURRENCY_DATA.EUR) {
+            alert('3ak3ek seeee7bi')
+        }
     };
 
     return (
@@ -30,5 +33,5 @@ export const CurrencyProvider = (props) => {
 
 export const CURRENCY_DATA = {
     TND: 'TND',
-    EUR: 'EUR',
+    EUR: '€',
 };

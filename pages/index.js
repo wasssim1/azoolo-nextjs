@@ -4,6 +4,8 @@ import BasicLayout from "../components/layout/BasicLayout";
 import HeroSliderBasic from "../components/heroslider/HeroSliderBasic";
 import heroSliderData from "../data/hero-sliders/hero-slider-one.json";
 import CountdownTimer from "../components/Countdown/CountdownTimer";
+import CategoryGrid from "../components/categorygrid/CategoryGrid";
+import CategoryGridThree from "../components/categorygrid/CategoryGridThree";
 
 export default function Home() {
     return (
@@ -25,6 +27,10 @@ export default function Home() {
                         buttonText="Only €€"
                         spaceBottomClass="space-mb--r100"
                     />
+
+                    <CategoryGrid spaceBottomClass="space-mb--r100"/>
+
+                    <CategoryGridThree spaceBottomClass="space-mb--r100"/>
 
                 </BasicLayout>
             </main>

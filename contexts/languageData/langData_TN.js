@@ -296,6 +296,28 @@ export default {
                     },
                 ]
             },
+            CATEGORY_6: {
+                key: "sale",
+                value: "Sale %",
+                SUBS: [
+                    {
+                        key: "meilleures-ventes",
+                        value: "Meilleures Ventes",
+                    },
+                    {
+                        key: "super-deals",
+                        value: "Super Deals",
+                    },
+                    {
+                        key: "offres-du-jour",
+                        value: "Offres du jour",
+                    },
+                    {
+                        key: "offres-dela-semaine",
+                        value: "Offres de la semaine",
+                    },
+                ]
+            },
         },
     },
 };

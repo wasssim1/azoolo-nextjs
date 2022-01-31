@@ -1,16 +1,17 @@
-import { useState, Fragment } from "react";
+import {useState, Fragment, useContext} from "react";
 import { IoIosHeartEmpty, IoIosShuffle } from "react-icons/io";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
 import { ProductRating } from "../Product";
 import { getProductCartQuantity } from "../../lib/product";
 import {
-  ADD_TO_CART_LABEL,
-  AFFILIATE_LINK_LABEL,
+  ADD_TO_CART_LABEL, ADD_TO_WISHLIST_TOOLTIP, ADDED_TO_WISHLIST_TOOLTIP,
+  AFFILIATE_LINK_LABEL, CATEGORIES_LABEL,
   COLOR_LABEL,
   QUANTITY_LABEL,
   SIZE_LABEL
 } from "../../config/productLabels";
+import {CurrencyContext} from "../../contexts/currencyContext";
 
 const ProductDescription = ({
   product,
@@ -26,6 +27,9 @@ const ProductDescription = ({
   addToCompare,
   deleteFromCompare
 }) => {
+
+  const {currentCurrency} = useContext(CurrencyContext);
+
   const [selectedProductColor, setSelectedProductColor] = useState(
     product.variation ? product.variation[0].color : ""
   );
@@ -62,11 +66,11 @@ const ProductDescription = ({
       <div className="product-content__price space-mb--20">
         {product.discount > 0 ? (
           <Fragment>
-            <span className="main-price discounted">${productPrice}</span>
-            <span className="main-price">${discountedPrice}</span>
+            <span className="main-price discounted">{`${productPrice} ${currentCurrency}`}</span>
+            <span className="main-price">{`${discountedPrice} ${currentCurrency}`}</span>
           </Fragment>
         ) : (
-          <span className="main-price">${productPrice} </span>
+          <span className="main-price">{`${productPrice} ${currentCurrency}`}</span>
         )}
       </div>
       <div className="product-content__description space-mb--30">
@@ -222,8 +226,8 @@ const ProductDescription = ({
               }`}
               title={
                 wishlistItem !== undefined
-                  ? "Added to wishlist"
-                  : "Add to wishlist"
+                  ? ADDED_TO_WISHLIST_TOOLTIP
+                  : ADD_TO_WISHLIST_TOOLTIP
               }
               onClick={
                 wishlistItem !== undefined
@@ -261,7 +265,7 @@ const ProductDescription = ({
                   <td className="value">{product.sku}</td>
                 </tr>
                 <tr className="single-info">
-                  <td className="title">Categories: </td>
+                  <td className="title">{CATEGORIES_LABEL}: </td>
                   <td className="value">
                     {product.category &&
                       product.category.map((item, index, arr) => {
@@ -298,7 +302,7 @@ const ProductDescription = ({
                       })}
                   </td>
                 </tr>
-                <tr className="single-info">
+                {/*<tr className="single-info">
                   <td className="title">Share on: </td>
                   <td className="value">
                     <ul className="social-icons">
@@ -324,7 +328,7 @@ const ProductDescription = ({
                       </li>
                     </ul>
                   </td>
-                </tr>
+                </tr>*/}
               </tbody>
             </table>
           </div>

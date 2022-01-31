@@ -173,7 +173,7 @@ const ProductModal = (props) => {
                               <label
                                 htmlFor={single.color}
                                 style={{ backgroundColor: single.colorCode }}
-                              ></label>
+                              />
                             </Fragment>
                           );
                         })}

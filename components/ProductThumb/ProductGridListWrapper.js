@@ -1,21 +1,24 @@
-import { Fragment, useState } from "react";
+import React, {Fragment, useContext} from "react";
 
-import { useToasts } from "react-toast-notifications";
-import { getDiscountPrice } from "../../lib/product";
+import {useToasts} from "react-toast-notifications";
+import {getDiscountPrice} from "../../lib/product";
 import ProductGridList from "./ProductGridList";
+import {CartContext} from "../../contexts/cartContext";
+import ProductGrid from "./ProductGrid";
 
 const ProductGridWrapper = ({
   products,
   bottomSpace,
-  addToCart,
   addToWishlist,
   deleteFromWishlist,
   addToCompare,
   deleteFromCompare,
-  cartItems,
   wishlistItems,
   compareItems
 }) => {
+
+  const {cartItems, addToCart, removeFromCart} = useContext(CartContext);
+
   const { addToast } = useToasts();
   return (
     <Fragment>
@@ -26,13 +29,13 @@ const ProductGridWrapper = ({
             product.discount
           ).toFixed(2);
           const productPrice = product.price.toFixed(2);
-          const cartItem = cartItems.filter(
+          const cartItem = cartItems?.filter(
             (cartItem) => cartItem.id === product.id
           )[0];
-          const wishlistItem = wishlistItems.filter(
+          const wishlistItem = wishlistItems?.filter(
             (wishlistItem) => wishlistItem.id === product.id
           )[0];
-          const compareItem = compareItems.filter(
+          const compareItem = compareItems?.filter(
             (compareItem) => compareItem.id === product.id
           )[0];
 
@@ -59,5 +62,7 @@ const ProductGridWrapper = ({
     </Fragment>
   );
 };
+
+
 
 export default ProductGridWrapper;

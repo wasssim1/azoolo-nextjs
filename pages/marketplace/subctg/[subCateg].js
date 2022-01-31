@@ -13,7 +13,7 @@ import ShopProducts from "../../../components/Shop/ShopProducts";
 import productsFake from "../../../data/products.json";
 
 const SubCategoryPage = ({ products }) => {
-    const [layout, setLayout] = useState("grid four-column");
+    const [layout, setLayout] = useState("grid three-column");
     const [sortType, setSortType] = useState("");
     const [sortValue, setSortValue] = useState("");
     const [filterSortType, setFilterSortType] = useState("");

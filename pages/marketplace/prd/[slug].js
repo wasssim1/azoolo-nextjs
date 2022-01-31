@@ -6,13 +6,13 @@ import {getDiscountPrice} from "../../../lib/product";
 import {CartContext} from "../../../contexts/cartContext";
 import BasicLayout from "../../../components/layout/BasicLayout";
 import BreadcrumbOne from "../../../components/Breadcrumb/BreadcrumbOne";
-import Link from "next/link";
 import ImageGalleryBottomThumb from "../../../components/ProductDetails/ImageGalleryBottomThumb";
 import ProductDescription from "../../../components/ProductDetails/ProductDescription";
 import ProductDescriptionTab from "../../../components/ProductDetails/ProductDescriptionTab";
 import SectionTitle from "../../../components/sectiontitle/SectionTitle";
-import categoryData from "../../../data/categories/category-one.json";
 import CategorySlider from "../../../components/categorygrid/CategorySlider";
+import {PRODUCT_NOT_FOUND_LABEL, SIMILAR_PRODUCTS_LABEL} from "../../../config/productLabels";
+import similarProducts from "../../../data/categories/similar-products.json";
 
 const ProductDetail = ({
                            product,
@@ -28,15 +28,20 @@ const ProductDetail = ({
 
     useEffect(() => {
         document.querySelector("body").classList.remove("overflow-hidden");
-    },[]);
+    }, []);
 
     const {addToast} = useToasts();
-    const discountedPrice = getDiscountPrice(
-        product.price,
-        product.discount
-    )?.toFixed(2);
 
-    const productPrice = product.price?.toFixed(2);
+    let discountedPrice = 0;
+    let productPrice = 0;
+    if (product) {
+        discountedPrice = getDiscountPrice(
+            product.price,
+            product.discount
+        )?.toFixed(2);
+        productPrice = product.price?.toFixed(2);
+    }
+
     const cartItem = cartItems.filter(
         (cartItem) => cartItem.id === product.id
     )[0];
@@ -51,61 +56,65 @@ const ProductDetail = ({
         <BasicLayout>
             {/* breadcrumb */}
             <BreadcrumbOne
-                pageTitle={product.name}
+                pageTitle={product ? product.name : PRODUCT_NOT_FOUND_LABEL}
                 backgroundImage="/assets/images/backgrounds/breadcrumb-bg-1.png"
             >
-                <ul className="breadcrumb__list">
-                    <li>{product.name}</li>
-                </ul>
+                {/*<ul className="breadcrumb__list">*/}
+                {/*    <li>{product.name}</li>*/}
+                {/*</ul>*/}
             </BreadcrumbOne>
 
             {/* product details */}
-            <div className="product-details space-mt--r100 space-mb--r100">
-                <Container>
-                    <Row>
-                        <Col lg={6} className="space-mb-mobile-only--50">
-                            {/* image gallery bottom thumb */}
-                            <ImageGalleryBottomThumb
-                                product={product}
-                                wishlistItem={wishlistItem}
-                                addToast={addToast}
-                                addToWishlist={addToWishlist}
-                                deleteFromWishlist={deleteFromWishlist}
-                            />
-                        </Col>
+            {
+                product &&
+                <div className="product-details space-mt--r100 space-mb--r100">
+                    <Container>
+                        <Row>
+                            <Col lg={6} className="space-mb-mobile-only--50">
+                                {/* image gallery bottom thumb */}
+                                <ImageGalleryBottomThumb
+                                    product={product}
+                                    wishlistItem={wishlistItem}
+                                    addToast={addToast}
+                                    addToWishlist={addToWishlist}
+                                    deleteFromWishlist={deleteFromWishlist}
+                                />
+                            </Col>
 
-                        <Col lg={6}>
-                            {/* product description */}
-                            <ProductDescription
-                                product={product}
-                                productPrice={productPrice}
-                                discountedPrice={discountedPrice}
-                                cartItems={cartItems}
-                                cartItem={cartItem}
-                                wishlistItem={wishlistItem}
-                                compareItem={compareItem}
-                                addToast={addToast}
-                                addToCart={addToCart}
-                                addToWishlist={addToWishlist}
-                                deleteFromWishlist={deleteFromWishlist}
-                                addToCompare={addToCompare}
-                                deleteFromCompare={deleteFromCompare}
-                            />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            {/* product description tab */}
-                            <ProductDescriptionTab product={product}/>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
+                            <Col lg={6}>
+                                {/* product description */}
+                                <ProductDescription
+                                    product={product}
+                                    productPrice={productPrice}
+                                    discountedPrice={discountedPrice}
+                                    cartItems={cartItems}
+                                    cartItem={cartItem}
+                                    wishlistItem={wishlistItem}
+                                    compareItem={compareItem}
+                                    addToast={addToast}
+                                    addToCart={addToCart}
+                                    addToWishlist={addToWishlist}
+                                    deleteFromWishlist={deleteFromWishlist}
+                                    addToCompare={addToCompare}
+                                    deleteFromCompare={deleteFromCompare}
+                                />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                {/* product description tab */}
+                                <ProductDescriptionTab product={product}/>
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
+            }
 
             <div className="element-wrapper space-mt--r130 space-mb--r130">
-                <SectionTitle title="Produits Similaires" subtitle="This is where to find your satisfactory products"/>
+                <SectionTitle title={SIMILAR_PRODUCTS_LABEL}
+                              subtitle="This is where to find your satisfactory products"/>
                 <CategorySlider
-                    categoryData={categoryData}
+                    categoryData={similarProducts}
                     spaceBottomClass="space-mb--r100"
                 />
             </div>
@@ -122,10 +131,10 @@ const ProductDetail = ({
     return {paths, fallback: false};
 }*/
 
-export async function getServerSideProps({params: {prd}}) {
+export async function getServerSideProps({params: {slug}}) {
     // const res = await getData(`product/${id}`);
 
-    const product = await productsFake?.find(p => p.slug === prd) || {};
+    const product = await productsFake?.find(p => p.slug === slug) || null;
     console.log(product)
 
     return {

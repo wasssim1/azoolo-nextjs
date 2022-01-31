@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Container, Row, Col } from "react-bootstrap";
 import { IoIosAdd } from "react-icons/io";
-import SectionTitleThree from "../sectiontitle/SectionTitleThree";
+import SectionTitle from "../sectiontitle/SectionTitle";
 
 const DecorContent = () => {
   return (
@@ -14,7 +14,7 @@ const DecorContent = () => {
             </p>
           </Col>
           <Col lg={10} xl={6} className="ml-auto mr-auto">
-            <SectionTitleThree
+            <SectionTitle
               title="Best selling products"
               subtitle="Lorem ipsum dolor sit amet, consectetur cing elit. Suspe ndisse suscipit sagittis leo estibulum issim Lorem ipsum dolor sit amet, consectetur cing elit."
             />

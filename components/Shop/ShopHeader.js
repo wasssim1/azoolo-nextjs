@@ -2,6 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { MdViewComfy, MdApps, MdList } from "react-icons/md";
 import { IoMdFunnel } from "react-icons/io";
 import { setActiveLayout } from "../../lib/product";
+
 const ShopHeader = ({
   shopTopFilterStatus,
   setShopTopFilterStatus,
@@ -17,7 +18,7 @@ const ShopHeader = ({
       <Container className={layoutClass ? layoutClass : ""}>
         <Row className="align-items-center">
           <Col md={5} className="text-center text-md-left">
-            Showing {sortedProductCount} of {productCount} result
+            Il y a {sortedProductCount} du {productCount} en total
           </Col>
 
           <Col md={7}>
@@ -28,15 +29,25 @@ const ShopHeader = ({
                     getFilterSortParams("filterSort", e.target.value)
                   }
                 >
-                  <option value="default">Default</option>
-                  <option value="priceHighToLow">Price - High to Low</option>
-                  <option value="priceLowToHigh">Price - Low to High</option>
+                  <option value="default">Par Défaut</option>
+                  <option value="priceHighToLow">Prix décroissant</option>
+                  <option value="priceLowToHigh">Prix croissant</option>
                 </select>
               </div>
 
               <div className="single-icon grid-icons d-none d-lg-block">
                 <button
-                  onClick={(e) => {
+                    onClick={(e) => {
+                      getLayout("grid four-column");
+                      setActiveLayout(e);
+                    }}
+                >
+                  <MdViewComfy />
+                </button>
+
+                <button
+                    className="active"
+                    onClick={(e) => {
                     getLayout("grid three-column");
                     setActiveLayout(e);
                   }}
@@ -44,15 +55,6 @@ const ShopHeader = ({
                   <MdApps />
                 </button>
 
-                <button
-                  className="active"
-                  onClick={(e) => {
-                    getLayout("grid four-column");
-                    setActiveLayout(e);
-                  }}
-                >
-                  <MdViewComfy />
-                </button>
                 {listMode === false ? (
                   ""
                 ) : (
@@ -72,7 +74,7 @@ const ShopHeader = ({
                   onClick={() => setShopTopFilterStatus(!shopTopFilterStatus)}
                   className={shopTopFilterStatus ? "active" : ""}
                 >
-                  <IoMdFunnel /> Filter
+                  <IoMdFunnel /> Filtrer
                 </button>
               </div>
             </div>

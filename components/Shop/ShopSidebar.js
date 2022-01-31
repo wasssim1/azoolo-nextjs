@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import {Fragment, useContext} from "react";
 import Link from "next/link";
 import { IoIosSearch } from "react-icons/io";
 import {
@@ -10,9 +10,14 @@ import {
   getDiscountPrice
 } from "../../lib/product";
 import { ProductRating } from "../Product";
+import {SEARCH_PRODUCTS_PLACEHOLDER} from "../../config/productLabels";
+import {MARKETPLACE_PRODUCT_URL} from "../../config/staticNavigation";
+import {CurrencyContext} from "../../contexts/currencyContext";
 
 const ShopSidebar = ({ products, getSortParams }) => {
-  const categories = getIndividualCategories(products);
+    const {currentCurrency} = useContext(CurrencyContext);
+
+    const categories = getIndividualCategories(products);
   const colors = getIndividualColors(products);
   const tags = getIndividualTags(products);
   const popularProducts = getProducts(products, "decor", "popular", 3);
@@ -23,7 +28,7 @@ const ShopSidebar = ({ products, getSortParams }) => {
         {/* search widget */}
         <div className="search-widget">
           <form>
-            <input type="search" placeholder="Search products ..." />
+            <input type="search" placeholder={SEARCH_PRODUCTS_PLACEHOLDER} />
             <button type="button">
               <IoIosSearch />
             </button>
@@ -34,7 +39,7 @@ const ShopSidebar = ({ products, getSortParams }) => {
       {/* category list */}
       <div className="single-sidebar-widget space-mb--40">
         <h2 className="single-sidebar-widget__title space-mb--30">
-          Categories
+          Catégories
         </h2>
         {categories.length > 0 ? (
           <ul className="single-sidebar-widget__list single-sidebar-widget__list--category">
@@ -46,7 +51,7 @@ const ShopSidebar = ({ products, getSortParams }) => {
                 }}
                 className="active"
               >
-                All categories
+                Toutes les catégories
               </button>
             </li>
             {categories.map((category, i) => {
@@ -71,7 +76,7 @@ const ShopSidebar = ({ products, getSortParams }) => {
 
       {/* color list */}
       <div className="single-sidebar-widget space-mb--40">
-        <h2 className="single-sidebar-widget__title space-mb--30">Colors</h2>
+        <h2 className="single-sidebar-widget__title space-mb--30">Couleurs</h2>
         {colors.length > 0 ? (
           <ul className="single-sidebar-widget__list single-sidebar-widget__list--color">
             {colors.map((color, i) => {
@@ -83,7 +88,7 @@ const ShopSidebar = ({ products, getSortParams }) => {
                       setActiveSort(e);
                     }}
                     style={{ backgroundColor: color.colorCode }}
-                  ></button>
+                  />
                 </li>
               );
             })}
@@ -106,7 +111,7 @@ const ShopSidebar = ({ products, getSortParams }) => {
       {/* popular products */}
       <div className="single-sidebar-widget space-mb--40">
         <h2 className="single-sidebar-widget__title space-mb--30">
-          Popular products
+          Produits Populaires
         </h2>
         {popularProducts.length > 0 ? (
           <div className="widget-product-wrapper">
@@ -121,12 +126,8 @@ const ShopSidebar = ({ products, getSortParams }) => {
                   <div className="single-widget-product">
                     <div className="single-widget-product__image">
                       <Link
-                        href={`/shop/product-basic/[slug]?slug=${product.slug}`}
-                        as={
-                          process.env.PUBLIC_URL +
-                          "/shop/product-basic/" +
-                          product.slug
-                        }
+                          href={`${MARKETPLACE_PRODUCT_URL}/${product.slug}`}
+                          as={`${process.env.PUBLIC_URL}${MARKETPLACE_PRODUCT_URL}/${product.slug}`}
                       >
                         <a className="image-wrap">
                           <img
@@ -141,12 +142,8 @@ const ShopSidebar = ({ products, getSortParams }) => {
                       <div className="single-widget-product__content__top">
                         <h3 className="product-title space-mb--10">
                           <Link
-                            href={`/shop/product-basic/[slug]?slug=${product.slug}`}
-                            as={
-                              process.env.PUBLIC_URL +
-                              "/shop/product-basic/" +
-                              product.slug
-                            }
+                              href={`${MARKETPLACE_PRODUCT_URL}/${product.slug}`}
+                              as={`${process.env.PUBLIC_URL}${MARKETPLACE_PRODUCT_URL}/${product.slug}`}
                           >
                             <a>{product.name}</a>
                           </Link>
@@ -155,14 +152,14 @@ const ShopSidebar = ({ products, getSortParams }) => {
                           {product.discount > 0 ? (
                             <Fragment>
                               <span className="main-price discounted">
-                                ${productPrice}
+                                {`${productPrice} ${currentCurrency}`}
                               </span>
                               <span className="discounted-price">
-                                ${discountedPrice}
+                                {`${discountedPrice} ${currentCurrency}`}
                               </span>
                             </Fragment>
                           ) : (
-                            <span className="main-price">${productPrice}</span>
+                            <span className="main-price">{`${productPrice} ${currentCurrency}`}</span>
                           )}
                         </div>
                         <div className="rating">
@@ -176,7 +173,7 @@ const ShopSidebar = ({ products, getSortParams }) => {
             })}
           </div>
         ) : (
-          "No products found"
+          "Aucun Produit Trouvé"
         )}
       </div>
 
