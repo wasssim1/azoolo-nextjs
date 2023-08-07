@@ -1,6 +1,6 @@
-import React, {useContext, useEffect, useState} from "react";
 import Link from "next/link";
-import {Container} from "react-bootstrap";
+import React, { useContext, useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 import {
     IoIosArrowDown,
     IoIosCart,
@@ -13,22 +13,23 @@ import {
     IoLogoYoutube,
     IoMdPerson
 } from "react-icons/io";
-import Navigation from "./elements/Navigation";
+
+import { CartContext } from "../../contexts/cartContext";
+import { CurrencyContext, CurrencyKey, CurrencyLabel } from "../../contexts/currencyContext";
+import { LanguageContext, LanguageKey, LanguageLabel } from "../../contexts/languageContext";
 import AboutOverlay from "./elements/AboutOverlay";
-import SearchOverlay from "./elements/SearchOverlay";
 import CartOverlay from "./elements/CartOverlay";
-import WishlistOverlay from "./elements/WishlistOverlay";
 import MobileMenu from "./elements/MobileMenu";
-import {CURRENCY_DATA, CurrencyContext} from "../../contexts/currencyContext";
-import {LANGUAGE_DATA, LanguageContext} from "../../contexts/languageContext";
-import {CartContext} from "../../contexts/cartContext";
+import Navigation from "./elements/Navigation";
+import SearchOverlay from "./elements/SearchOverlay";
+import WishlistOverlay from "./elements/WishlistOverlay";
 
-const BasicHeader = ({aboutOverlay, wishlistItems}) => {
-    const {currentLanguage, changeLanguage, languageData} = useContext(LanguageContext);
-    const {currentCurrency, changeCurrency} = useContext(CurrencyContext);
-    const {cartItems} = useContext(CartContext);
+const BasicHeader = ({ aboutOverlay, wishlistItems }) => {
+    const { currentLanguage, changeLanguage, languageData } = useContext(LanguageContext);
+    const { currentCurrency, changeCurrency } = useContext(CurrencyContext);
+    const { cartItems } = useContext(CartContext);
 
-    const {header} = languageData;
+    const { header } = languageData;
 
     const [scroll, setScroll] = useState(0);
     const [headerTop, setHeaderTop] = useState(0);
@@ -68,52 +69,48 @@ const BasicHeader = ({aboutOverlay, wishlistItems}) => {
                         <div className="header-top">
                             <div className="header-top__left">
                                 <div className="language-change change-dropdown">
-                                    <span>{LANGUAGE_DATA[currentLanguage]}</span> <IoIosArrowDown/>
+                                    <span>{LanguageLabel[currentLanguage]}</span> <IoIosArrowDown />
                                     <ul>
                                         <li>
                                             <button
-                                                onClick={() => changeLanguage('TUNISIAN')}>{LANGUAGE_DATA.TUNISIAN}
+                                                onClick={() => changeLanguage(LanguageKey.TUNISIAN)}>{LanguageLabel.TUNISIAN}
                                             </button>
                                         </li>
                                         <li>
                                             <button
-                                                onClick={() => changeLanguage('FRENCH')}>{LANGUAGE_DATA.FRENCH}
+                                                onClick={() => changeLanguage(LanguageKey.FRENCH)}>{LanguageLabel.FRENCH}
                                             </button>
                                         </li>
                                         <li>
                                             <button
-                                                onClick={() => changeLanguage('ENGLISH')}>{LANGUAGE_DATA.ENGLISH}
+                                                onClick={() => changeLanguage(LanguageKey.ENGLISH)}>{LanguageLabel.ENGLISH}
                                             </button>
                                         </li>
                                     </ul>
                                 </div>
                                 <span className="header-separator">|</span>
                                 <div className="currency-change change-dropdown">
-                                    {currentCurrency === CURRENCY_DATA.EUR ?
-                                        <span>{CURRENCY_DATA.EUR}</span>
-                                        :
-                                        <span>{CURRENCY_DATA.TND}</span>
-                                    } <IoIosArrowDown/>
+                                    <span>{currentCurrency}</span> <IoIosArrowDown />
                                     <ul>
                                         <li>
-                                            <button onClick={() => changeCurrency(CURRENCY_DATA.TND)}>TND</button>
+                                            <button onClick={() => changeCurrency(CurrencyKey.TND)}>{CurrencyLabel.TND}</button>
                                         </li>
                                         <li>
-                                            <button onClick={() => changeCurrency(CURRENCY_DATA.EUR)}>EUR</button>
+                                            <button onClick={() => changeCurrency(CurrencyKey.EUR)}>{CurrencyLabel.EUR}</button>
                                         </li>
                                     </ul>
                                 </div>
                                 <span className="header-separator">|</span>
                                 <div className="order-online-text">
                                     {header.topHeader?.ORDER_ONLINE || 'Order Online'}
-                                    <span className="number">(+216) 123456</span>
+                                    <span className="number">(+216) 12 345678</span>
                                 </div>
                             </div>
                             <div className="header-top__right">
                                 <div className="signup-link">
                                     <Link
-                                        href="/login-register"
-                                        as={process.env.PUBLIC_URL + "/login-register"}
+                                        href="/account/login"
+                                        as={process.env.PUBLIC_URL + "/account/login"}
                                     >
                                         <a>{header.topHeader?.REGISTER_LOGIN || 'Signup / Login'}</a>
                                     </Link>
@@ -123,22 +120,22 @@ const BasicHeader = ({aboutOverlay, wishlistItems}) => {
                                     <ul>
                                         <li>
                                             <a href="https://www.twitter.com" target="_blank">
-                                                <IoLogoTwitter/>
+                                                <IoLogoTwitter />
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://www.facebook.com" target="_blank">
-                                                <IoLogoFacebook/>
+                                                <IoLogoFacebook />
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://www.instagram.com" target="_blank">
-                                                <IoLogoInstagram/>
+                                                <IoLogoInstagram />
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://www.youtube.com" target="_blank">
-                                                <IoLogoYoutube/>
+                                                <IoLogoYoutube />
                                             </a>
                                         </li>
                                     </ul>
@@ -165,7 +162,7 @@ const BasicHeader = ({aboutOverlay, wishlistItems}) => {
                             </div>
 
                             {/* navigation */}
-                            <Navigation/>
+                            <Navigation />
 
                             {/* icons */}
                             <div className="header-content__icons space-pl--15">
@@ -179,16 +176,16 @@ const BasicHeader = ({aboutOverlay, wishlistItems}) => {
                                                     .classList.add("overflow-hidden");
                                             }}
                                         >
-                                            <IoIosSearch/>
+                                            <IoIosSearch />
                                         </button>
                                     </li>
                                     <li>
                                         <Link
-                                            href="/login-register"
-                                            as={process.env.PUBLIC_URL + "/login-register"}
+                                            href="/account/login"
+                                            as={process.env.PUBLIC_URL + "/account/login"}
                                         >
                                             <a>
-                                                <IoMdPerson/>
+                                                <IoMdPerson />
                                             </a>
                                         </Link>
                                     </li>
@@ -201,11 +198,11 @@ const BasicHeader = ({aboutOverlay, wishlistItems}) => {
                                                     .classList.add("overflow-hidden");
                                             }}
                                         >
-                                            <IoIosHeartEmpty/>
+                                            <IoIosHeartEmpty />
                                             {wishlistItems?.length >= 1 ? (
                                                 <span className="count">
-                          {wishlistItems.length ? wishlistItems.length : ""}
-                        </span>
+                                                    {wishlistItems.length ? wishlistItems.length : ""}
+                                                </span>
                                             ) : (
                                                 ""
                                             )}
@@ -220,7 +217,7 @@ const BasicHeader = ({aboutOverlay, wishlistItems}) => {
                                                     .classList.add("overflow-hidden");
                                             }}
                                         >
-                                            <IoIosCart/>
+                                            <IoIosCart />
                                             {cartItems?.length >= 1 ? (
                                                 <span className="count">
                                                     {cartItems.length ? cartItems.length : ""}
@@ -236,14 +233,14 @@ const BasicHeader = ({aboutOverlay, wishlistItems}) => {
                                     <li>
                                         <Link
                                             href="/wishlist"
-                                            as={process.env.PUBLIC_URL + "/other/wishlist"}
+                                            as={process.env.PUBLIC_URL + "/wishlist"}
                                         >
                                             <a>
-                                                <IoIosHeartEmpty/>
+                                                <IoIosHeartEmpty />
                                                 {wishlistItems?.length >= 1 ? (
                                                     <span className="count">
-                            {wishlistItems.length ? wishlistItems.length : ""}
-                          </span>
+                                                        {wishlistItems.length ? wishlistItems.length : ""}
+                                                    </span>
                                                 ) : (
                                                     ""
                                                 )}
@@ -253,10 +250,10 @@ const BasicHeader = ({aboutOverlay, wishlistItems}) => {
                                     <li>
                                         <Link
                                             href="/cart"
-                                            as={process.env.PUBLIC_URL + "/other/cart"}
+                                            as={process.env.PUBLIC_URL + "/cart"}
                                         >
                                             <a>
-                                                <IoIosCart/>
+                                                <IoIosCart />
                                                 {cartItems?.length >= 1 ? (
                                                     <span className="count">
                                                         {cartItems.length ? cartItems.length : ""}
@@ -269,7 +266,7 @@ const BasicHeader = ({aboutOverlay, wishlistItems}) => {
                                     </li>
                                     <li>
                                         <button onClick={() => setOffCanvasMobileMenuActive(true)}>
-                                            <IoIosMenu/>
+                                            <IoIosMenu />
                                         </button>
                                     </li>
                                 </ul>

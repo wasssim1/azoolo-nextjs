@@ -1,9 +1,16 @@
+import { useContext } from "react";
 import { IoIosClose } from "react-icons/io";
-import MobileMenuSearch from "./MobileMenuSearch";
+
+import { CurrencyContext, CurrencyKey, CurrencyLabel } from "../../../contexts/currencyContext";
+import { LanguageContext, LanguageKey, LanguageLabel } from "../../../contexts/languageContext";
 import MobileMenuNav from "./MobileMenuNav";
+import MobileMenuSearch from "./MobileMenuSearch";
 import MobileMenuWidgets from "./MobileMenuWidgets";
 
 const MobileMenu = ({ activeStatus, getActiveStatus }) => {
+  const { currentLanguage, changeLanguage, languageData } = useContext(LanguageContext);
+    const { currentCurrency, changeCurrency } = useContext(CurrencyContext);
+
   return (
     <div className={`offcanvas-mobile-menu ${activeStatus ? "active" : ""}`}>
       <div
@@ -23,22 +30,23 @@ const MobileMenu = ({ activeStatus, getActiveStatus }) => {
             <MobileMenuSearch />
 
             {/* mobile nav menu */}
-            <MobileMenuNav getActiveStatus={getActiveStatus} />
+            {/* TODO: Fix navigation */}
+            {/* <MobileMenuNav getActiveStatus={getActiveStatus} /> */}
 
             <div className="offcanvas-mobile-menu__middle">
               <div className="lang-curr-style space-mb--20">
-                <span className="title">Choose Language </span>
-                <select>
-                  <option value="TN">Tounsi</option>
-                  <option value="FR">Français</option>
-                  <option value="EN">English</option>
+                <span className="title">Choose Language</span>
+                <select onChange={(e) => changeLanguage(e.target.value)} value={currentLanguage}>
+                  <option value={LanguageKey.TUNISIAN}>{LanguageLabel.TUNISIAN}</option>
+                  <option value={LanguageKey.FRENCH}>{LanguageLabel.FRENCH}</option>
+                  <option value={LanguageKey.ENGLISH}>{LanguageLabel.ENGLISH}</option>
                 </select>
               </div>
               <div className="lang-curr-style">
                 <span className="title">Choose Currency</span>
-                <select>
-                  <option value="TND">TND</option>
-                  <option value="EUR">EUR</option>
+                <select onChange={(e) => changeCurrency(e.target.value)} value={currentCurrency}>
+                  <option value={CurrencyKey.TND}>{CurrencyLabel.TND}</option>
+                  <option value={CurrencyKey.EUR}>{CurrencyLabel.EUR}</option>
                 </select>
               </div>
             </div>

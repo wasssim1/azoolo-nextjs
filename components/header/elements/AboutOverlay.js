@@ -27,18 +27,15 @@ const AboutOverlay = ({ activeStatus, getActiveStatus }) => {
             <div className="about-widget">
               <h2 className="about-widget__title">About Us</h2>
               <p>
-                At Lezada, we put a strong emphasis on simplicity, quality and
-                usefulness of fashion products over other factors. Our fashion
-                items never get outdated. They are not short-lived as normal
-                fashion clothes.
+                At Azoolo, ...
               </p>
             </div>
           </div>
           <div className="about-overlay__contact-widget">
             <p className="email">
-              <a href="mailto:contact@lezada.com">contact@lezada.com</a>
+              <a href="mailto:contact@azoolo.com">contact@azoolo.com</a>
             </p>
-            <p className="phone">(+00) 123 567990</p>
+            <p className="phone">(+216) 12 345678</p>
             <div className="social-icons">
               <ul>
                 <li>

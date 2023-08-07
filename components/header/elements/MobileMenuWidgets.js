@@ -18,19 +18,19 @@ const MobileMenuWidgets = () => {
           <li>
             <IoMdPerson />
             <Link
-              href="/other/login-register"
-              as={process.env.PUBLIC_URL + "/other/login-register"}
+              href="/account/login"
+              as={process.env.PUBLIC_URL + "/account/login"}
             >
-              <a>Login / Register</a>
+              <a>Register / Login</a>
             </Link>
           </li>
           <li>
             <IoIosPhonePortrait />
-            <a href="tel://12452456012">(1245) 2456 012 </a>
+            <a href="tel://+216 12 345689">(+216) 12 345678</a>
           </li>
           <li>
             <IoMdMail />
-            <a href="mailto:info@yourdomain.com">info@yourdomain.com</a>
+            <a href="mailto:contact@azoolo.com">contact@azoolo.com</a>
           </li>
         </ul>
       </div>
