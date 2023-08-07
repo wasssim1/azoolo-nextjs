@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useState} from "react";
+import React, { createContext, useEffect, useState } from "react";
 import langData_EN from "./languageData/langData_EN";
 import langData_FR from "./languageData/langData_FR";
 import langData_TN from "./languageData/langData_TN";
@@ -6,8 +6,8 @@ import langData_TN from "./languageData/langData_TN";
 export const LanguageContext = createContext();
 
 export const LanguageProvider = (props) => {
-    const [currentLanguage, setCurrentLanguage] = useState('FRENCH');
-    const [languageData, setLanguageData] = useState(langData.FRENCH);
+    const [currentLanguage, setCurrentLanguage] = useState(LanguageKey.ENGLISH);
+    const [languageData, setLanguageData] = useState(langData.ENGLISH);
 
     useEffect(() => {
         const cl = localStorage.getItem('current-language');
@@ -37,7 +37,13 @@ export const LanguageProvider = (props) => {
     )
 };
 
-export const LANGUAGE_DATA = {
+export const LanguageKey = {
+    TUNISIAN: 'TUNISIAN',
+    ENGLISH: 'ENGLISH',
+    FRENCH: 'FRENCH',
+}
+
+export const LanguageLabel = {
     TUNISIAN: 'Tounsi',
     FRENCH: 'Français',
     ENGLISH: 'English',

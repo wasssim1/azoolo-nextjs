@@ -3,7 +3,7 @@ import React, {createContext, useEffect, useState} from "react";
 export const CurrencyContext = createContext();
 
 export const CurrencyProvider = (props) => {
-    const [currentCurrency, setCurrentCurrency] = useState(CURRENCY_DATA.TND);
+    const [currentCurrency, setCurrentCurrency] = useState(CurrencyLabel.TND);
 
     useEffect(() => {
         const cc = localStorage.getItem('current-currency');
@@ -15,7 +15,7 @@ export const CurrencyProvider = (props) => {
     const changeCurrency = (currency) => {
         localStorage.setItem('current-currency', currency);
         setCurrentCurrency(currency);
-        if (currency === CURRENCY_DATA.EUR) {
+        if (currency === CurrencyLabel.EUR) {
             alert('3ak3ek seeee7bi')
         }
     };
@@ -31,7 +31,12 @@ export const CurrencyProvider = (props) => {
     )
 };
 
-export const CURRENCY_DATA = {
+export const CurrencyKey = {
+    TND: 'TND',
+    EUR: 'EUR',
+};
+
+export const CurrencyLabel = {
     TND: 'TND',
     EUR: '€',
 };
