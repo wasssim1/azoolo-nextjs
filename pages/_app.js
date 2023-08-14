@@ -1,11 +1,13 @@
-import React from "react";
 import Head from "next/head";
-import {ToastProvider} from "react-toast-notifications";
-import '../styles/globals.css'
+import React from "react";
+import { ToastProvider } from "react-toast-notifications";
+
 import "../assets/scss/styles.scss";
-import {CartProvider} from "../contexts/cartContext";
-import {CurrencyProvider} from "../contexts/currencyContext";
-import {LanguageProvider} from "../contexts/languageContext";
+import Preloader from "../components/Preloader";
+import { CartProvider } from "../contexts/cartContext";
+import { CurrencyProvider } from "../contexts/currencyContext";
+import { LanguageProvider } from "../contexts/languageContext";
+import '../styles/globals.css';
 
 function MyApp({Component, pageProps}) {
     return (
@@ -22,6 +24,7 @@ function MyApp({Component, pageProps}) {
                 <LanguageProvider>
                     <CurrencyProvider>
                         <CartProvider>
+                            <Preloader />
                             <Component {...pageProps} />
                         </CartProvider>
                     </CurrencyProvider>
