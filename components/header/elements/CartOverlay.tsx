@@ -1,9 +1,9 @@
-import React, {useContext} from "react";
 import Link from "next/link";
-import {IoIosClose} from "react-icons/io";
+import { useContext } from "react";
 import CustomScroll from "react-custom-scroll";
-import {useToasts} from "react-toast-notifications";
-import {CartContext} from "../../../contexts/cartContext";
+import { IoIosClose } from "react-icons/io";
+import { useToasts } from "react-toast-notifications";
+import { CartContext } from "../../../contexts/cartContext";
 
 const CartOverlay = (props) => {
     const {

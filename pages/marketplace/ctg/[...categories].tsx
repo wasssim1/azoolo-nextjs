@@ -1,17 +1,17 @@
 import Link from "next/link";
-import {useRouter} from "next/router";
-import {Col, Container, Row} from "react-bootstrap";
-import BasicLayout from "../../../components/layout/BasicLayout";
+import { useRouter } from "next/router";
+import { Fragment } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import BreadcrumbOne from "../../../components/Breadcrumb/BreadcrumbOne";
-import {CATEGORIES_LIST, categoriesIndexer} from "../../../lib/categoriesIndexer";
-import SectionTitle from "../../../components/sectiontitle/SectionTitle";
+import ProductGridWrapper from "../../../components/ProductThumb/ProductGridListWrapper";
 import CategorySlider from "../../../components/categorygrid/CategorySlider";
+import BasicLayout from "../../../components/layout/BasicLayout";
+import SectionTitle from "../../../components/sectiontitle/SectionTitle";
+import { SEE_MORE_LABEL } from "../../../config/productLabels";
+import { MARKETPLACE_CATEGORY_URL } from "../../../config/staticNavigation";
 import categoryData from "../../../data/categories/category-one.json";
-import ProductGridWrapper from "../../../components/ProductThumb/ProductGridWrapper";
-import React, {Fragment} from "react";
 import productsFake from "../../../data/products.json";
-import {SEE_MORE_LABEL} from "../../../config/productLabels";
-import {MARKETPLACE_CATEGORY_URL} from "../../../config/staticNavigation";
+import { CATEGORIES_LIST, categoriesIndexer } from "../../../lib/categoriesIndexer";
 // import {SectionTitle} from "../../components/SectionTitle";
 // import {CategoryGrid, CategoryGridTwo, CategorySlider} from "../../components/Category";
 // import categoryData from "../../data/categories/category-one.json";
@@ -26,8 +26,7 @@ const MarketplaceCat = ({products, subCategories}) => {
 
             <BreadcrumbOne
                 pageTitle={categoriesIndexer(categories?.[0])}
-                backgroundImage="/assets/images/backgrounds/breadcrumb-bg-2.jpg"
-            >
+                backgroundImage="/assets/images/backgrounds/breadcrumb-bg-2.jpg" className={undefined}            >
                 <ul className="breadcrumb__list">
 
                     <li>
@@ -51,8 +50,8 @@ const MarketplaceCat = ({products, subCategories}) => {
                                     // category sliders
                                     <>
                                         {
-                                            subCategories && subCategories.map(subCat => (
-                                                <Fragment>
+                                            subCategories && subCategories.map((subCat, idx) => (
+                                                <Fragment key={idx}>
                                                     <SectionTitle title={subCat.value}
                                                                   subtitle="This is where to find your satisfactory products"/>
                                                     <CategorySlider
@@ -69,8 +68,7 @@ const MarketplaceCat = ({products, subCategories}) => {
                                             <ProductGridWrapper
                                                 products={products}
                                                 column={4}
-                                                bottomSpace="space-mb--r50"
-                                            />
+                                                bottomSpace="space-mb--r50" addToWishlist={undefined} deleteFromWishlist={undefined} addToCompare={undefined} deleteFromCompare={undefined} wishlistItems={undefined} compareItems={undefined}                                            />
                                             <Col lg={12} className="text-center">
                                                 <Link
                                                     href="/shop/left-sidebar"
@@ -112,7 +110,7 @@ export async function getServerSideProps({params: {categories}}) {
     }
 
     if (categories.length === 1) {
-        const subCategories = Object.values(CATEGORIES_LIST).filter(f => categories[0] === f.parent)
+        const subCategories = Object.values(CATEGORIES_LIST).filter(f => categories[0] === (f as any).parent)
         console.log(subCategories)
 
         return {

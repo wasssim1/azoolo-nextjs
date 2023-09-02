@@ -2,7 +2,7 @@ export default {
     header: {
         topHeader: {
             ORDER_ONLINE: "Commandez en ligne",
-            REGISTER_LOGIN: "S'inscrire / S'identifier"
+            REGISTER_LOGIN: "S'identifier"
         },
         navigation: {
             CATEGORY_1: {

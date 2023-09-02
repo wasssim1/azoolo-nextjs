@@ -1,7 +1,6 @@
-import React from "react";
 import Link from "next/link";
+import { Col, Container, Row } from "react-bootstrap";
 import Swiper from "react-id-swiper";
-import {Col, Container, Row} from "react-bootstrap";
 
 const HeroSliderBasic = ({sliderData, spaceBottomClass}) => {
     const params = {

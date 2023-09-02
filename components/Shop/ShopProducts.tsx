@@ -6,8 +6,7 @@ const ShopProducts = ({ products, layout }) => {
       <Row className={layout}>
         <ProductGridListWrapper
           products={products}
-          bottomSpace="space-mb--50"
-        />
+          bottomSpace="space-mb--50" addToWishlist={undefined} deleteFromWishlist={undefined} addToCompare={undefined} deleteFromCompare={undefined} wishlistItems={undefined} compareItems={undefined} column={undefined}        />
       </Row>
     </div>
   );

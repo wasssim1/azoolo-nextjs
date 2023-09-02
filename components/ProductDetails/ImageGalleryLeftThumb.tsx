@@ -130,15 +130,14 @@ const ImageGalleryLeftThumb = ({
                 duration={200}
               >
                 <button
-                  className=""
+                  className={`wishlist-icon ${
+                    wishlistItem !== undefined ? "active" : ""
+                  }`}
                   onClick={
                     wishlistItem !== undefined
                       ? () => deleteFromWishlist(product, addToast)
                       : () => addToWishlist(product, addToast)
                   }
-                  className={`wishlist-icon ${
-                    wishlistItem !== undefined ? "active" : ""
-                  }`}
                 >
                   <IoIosHeartEmpty />
                 </button>

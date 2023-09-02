@@ -1,24 +1,24 @@
-import React from "react";
-import Head from 'next/head'
-import BasicLayout from "../components/layout/BasicLayout";
-import HeroSliderBasic from "../components/heroslider/HeroSliderBasic";
-import heroSliderData from "../data/hero-sliders/hero-slider-one.json";
+import Head from 'next/head';
+
 import CountdownTimer from "../components/Countdown/CountdownTimer";
 import CategoryGrid from "../components/categorygrid/CategoryGrid";
 import CategoryGridThree from "../components/categorygrid/CategoryGridThree";
+import HeroSliderBasic from "../components/heroslider/HeroSliderBasic";
+import BasicLayout from "../components/layout/BasicLayout";
+import heroSliderData from "../data/hero-sliders/hero-slider-one.json";
 
 export default function Home() {
     return (
         <div>
             <Head>
                 <title>Azoolo | Marketplace</title>
-                <link rel="icon" href=""/>
+                <link rel="icon" href="" />
             </Head>
 
             <main>
                 <BasicLayout>
-                    <HeroSliderBasic sliderData={heroSliderData}/>
-
+                    <HeroSliderBasic sliderData={heroSliderData} spaceBottomClass={undefined} />
+                    
                     <CountdownTimer
                         title="Deal of the day"
                         backgroundImage="/assets/images/countdown/bg-countdown-2.jpg"
@@ -28,9 +28,9 @@ export default function Home() {
                         spaceBottomClass="space-mb--r100"
                     />
 
-                    <CategoryGrid spaceBottomClass="space-mb--r100"/>
+                    <CategoryGrid spaceBottomClass="space-mb--r100" />
 
-                    <CategoryGridThree spaceBottomClass="space-mb--r100"/>
+                    <CategoryGridThree spaceBottomClass="space-mb--r100" subCategories={undefined} />
 
                 </BasicLayout>
             </main>

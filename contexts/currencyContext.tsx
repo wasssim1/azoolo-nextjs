@@ -1,6 +1,6 @@
 import React, {createContext, useEffect, useState} from "react";
 
-export const CurrencyContext = createContext();
+export const CurrencyContext = createContext<any>({});
 
 export const CurrencyProvider = (props) => {
     const [currentCurrency, setCurrentCurrency] = useState(CurrencyLabel.TND);

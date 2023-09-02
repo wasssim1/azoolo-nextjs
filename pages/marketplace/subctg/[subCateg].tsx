@@ -1,16 +1,16 @@
-import {useEffect, useState} from "react";
 import Link from "next/link";
-import {Col, Container, Row} from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import Paginator from "react-hooks-paginator";
-import {SlideDown} from "react-slidedown";
-import BasicLayout from "../../../components/layout/BasicLayout";
-import {getSortedProducts} from "../../../lib/product";
+import { SlideDown } from "react-slidedown";
 import BreadcrumbOne from "../../../components/Breadcrumb/BreadcrumbOne";
-import ShopHeader from "../../../components/Shop/ShopHeader";
 import ShopFilter from "../../../components/Shop/ShopFilter";
-import ShopSidebar from "../../../components/Shop/ShopSidebar";
+import ShopHeader from "../../../components/Shop/ShopHeader";
 import ShopProducts from "../../../components/Shop/ShopProducts";
+import ShopSidebar from "../../../components/Shop/ShopSidebar";
+import BasicLayout from "../../../components/layout/BasicLayout";
 import productsFake from "../../../data/products.json";
+import { getSortedProducts } from "../../../lib/product";
 
 const SubCategoryPage = ({ products }) => {
     const [layout, setLayout] = useState("grid three-column");
@@ -57,8 +57,7 @@ const SubCategoryPage = ({ products }) => {
             {/* breadcrumb */}
             <BreadcrumbOne
                 pageTitle="Test"
-                backgroundImage="/assets/images/backgrounds/breadcrumb-bg-1.png"
-            >
+                backgroundImage="/assets/images/backgrounds/breadcrumb-bg-1.png" className={undefined}>
                 <ul className="breadcrumb__list">
                     <li>
                         <Link href="/" as={process.env.PUBLIC_URL + "/"}>
@@ -78,8 +77,8 @@ const SubCategoryPage = ({ products }) => {
                     sortedProductCount={currentData.length}
                     shopTopFilterStatus={shopTopFilterStatus}
                     setShopTopFilterStatus={setShopTopFilterStatus}
-                    layoutClass="wide"
-                />
+                    layoutClass="wide" listMode={undefined}                
+                    />
 
                 {/* shop header filter */}
                 <SlideDown closed={shopTopFilterStatus ? false : true}>

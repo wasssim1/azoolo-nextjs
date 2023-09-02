@@ -1,12 +1,12 @@
-import React from "react";
-import Head from 'next/head'
+import Head from 'next/head';
+
 import BasicLayout from "../../components/layout/BasicLayout";
 
-function FAQs() {
+function StoreLocation() {
     return (
         <div>
             <Head>
-                <title>Azoolo | About Us</title>
+                <title>Azoolo | Store Location</title>
                 <link rel="icon" href=""/>
             </Head>
 
@@ -19,4 +19,4 @@ function FAQs() {
     )
 }
 
-export default FAQs;
+export default StoreLocation;

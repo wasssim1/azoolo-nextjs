@@ -8,6 +8,7 @@ import {
   IoIosHeartEmpty
 } from "react-icons/io";
 import { Tooltip } from "react-tippy";
+
 import {
   ADD_TO_WISHLIST_TOOLTIP,
   ADDED_TO_WISHLIST_TOOLTIP,
@@ -105,7 +106,6 @@ const ImageGalleryBottomThumb = ({
             duration={200}
           >
             <button
-              className=""
               onClick={
                 wishlistItem !== undefined
                   ? () => deleteFromWishlist(product, addToast)

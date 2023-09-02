@@ -3,7 +3,7 @@ import langData_EN from "./languageData/langData_EN";
 import langData_FR from "./languageData/langData_FR";
 import langData_TN from "./languageData/langData_TN";
 
-export const LanguageContext = createContext();
+export const LanguageContext = createContext<any>({});
 
 export const LanguageProvider = (props) => {
     const [currentLanguage, setCurrentLanguage] = useState(LanguageKey.ENGLISH);

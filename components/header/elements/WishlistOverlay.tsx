@@ -1,15 +1,18 @@
+import Image from "next/image";
 import Link from "next/link";
-import {IoIosClose} from "react-icons/io";
+import { Dispatch, SetStateAction } from "react";
 import CustomScroll from "react-custom-scroll";
-import {useToasts} from "react-toast-notifications";
-import {getDiscountPrice} from "../../../lib/product";
+import { IoIosClose } from "react-icons/io";
+import { useToasts } from "react-toast-notifications";
+
+import { getDiscountPrice } from "../../../lib/product";
 
 const WishlistOverlay = ({
                              activeStatus,
                              getActiveStatus,
                              wishlistItems,
                              deleteFromWishlist
-                         }) => {
+                         }: { activeStatus: any; getActiveStatus: Dispatch<SetStateAction<boolean>>; wishlistItems?: any; deleteFromWishlist?: any; }) => {
     const {addToast} = useToasts();
     return (
         <div className={`wishlist-overlay ${activeStatus ? "active" : ""}`}>

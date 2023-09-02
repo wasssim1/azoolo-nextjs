@@ -130,7 +130,6 @@ const ImageGalleryRightThumb = ({
                 duration={200}
               >
                 <button
-                  className=""
                   onClick={
                     wishlistItem !== undefined
                       ? () => deleteFromWishlist(product, addToast)

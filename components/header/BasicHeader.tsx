@@ -24,7 +24,7 @@ import Navigation from "./elements/Navigation";
 import SearchOverlay from "./elements/SearchOverlay";
 import WishlistOverlay from "./elements/WishlistOverlay";
 
-const BasicHeader = ({ aboutOverlay, wishlistItems }) => {
+const BasicHeader = ({ aboutOverlay, wishlistItems }: { aboutOverlay?:any, wishlistItems?: any }) => {
     const { currentLanguage, changeLanguage, languageData } = useContext(LanguageContext);
     const { currentCurrency, changeCurrency } = useContext(CurrencyContext);
     const { cartItems } = useContext(CartContext);
@@ -49,7 +49,7 @@ const BasicHeader = ({ aboutOverlay, wishlistItems }) => {
         window.addEventListener("scroll", handleScroll);
         scroll > headerTop
             ? (document.body.style.paddingTop = `${headerHeight}px`)
-            : (document.body.style.paddingTop = 0);
+            : (document.body.style.paddingTop = '0');
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
@@ -112,7 +112,7 @@ const BasicHeader = ({ aboutOverlay, wishlistItems }) => {
                                         href="/account/login"
                                         as={process.env.PUBLIC_URL + "/account/login"}
                                     >
-                                        <a>{header.topHeader?.REGISTER_LOGIN || 'Signup / Login'}</a>
+                                        <a>{header.topHeader?.REGISTER_LOGIN || 'Login'}</a>
                                     </Link>
                                 </div>
                                 <span className="header-separator">|</span>

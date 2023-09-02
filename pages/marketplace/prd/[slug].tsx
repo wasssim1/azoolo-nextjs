@@ -1,18 +1,18 @@
-import React, {useContext, useEffect} from "react";
-import {Col, Container, Row} from "react-bootstrap";
-import productsFake from "../../../data/products.json";
-import {useToasts} from "react-toast-notifications";
-import {getDiscountPrice} from "../../../lib/product";
-import {CartContext} from "../../../contexts/cartContext";
-import BasicLayout from "../../../components/layout/BasicLayout";
+import { useContext, useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { useToasts } from "react-toast-notifications";
 import BreadcrumbOne from "../../../components/Breadcrumb/BreadcrumbOne";
 import ImageGalleryBottomThumb from "../../../components/ProductDetails/ImageGalleryBottomThumb";
 import ProductDescription from "../../../components/ProductDetails/ProductDescription";
 import ProductDescriptionTab from "../../../components/ProductDetails/ProductDescriptionTab";
-import SectionTitle from "../../../components/sectiontitle/SectionTitle";
 import CategorySlider from "../../../components/categorygrid/CategorySlider";
-import {PRODUCT_NOT_FOUND_LABEL, SIMILAR_PRODUCTS_LABEL} from "../../../config/productLabels";
+import BasicLayout from "../../../components/layout/BasicLayout";
+import SectionTitle from "../../../components/sectiontitle/SectionTitle";
+import { PRODUCT_NOT_FOUND_LABEL, SIMILAR_PRODUCTS_LABEL } from "../../../config/productLabels";
+import { CartContext } from "../../../contexts/cartContext";
 import similarProducts from "../../../data/categories/similar-products.json";
+import productsFake from "../../../data/products.json";
+import { getDiscountPrice } from "../../../lib/product";
 
 const ProductDetail = ({
                            product,
@@ -57,8 +57,7 @@ const ProductDetail = ({
             {/* breadcrumb */}
             <BreadcrumbOne
                 pageTitle={product ? product.name : PRODUCT_NOT_FOUND_LABEL}
-                backgroundImage="/assets/images/backgrounds/breadcrumb-bg-1.png"
-            >
+                backgroundImage="/assets/images/backgrounds/breadcrumb-bg-1.png" className={undefined}            >
                 {/*<ul className="breadcrumb__list">*/}
                 {/*    <li>{product.name}</li>*/}
                 {/*</ul>*/}
@@ -88,7 +87,6 @@ const ProductDetail = ({
                                     productPrice={productPrice}
                                     discountedPrice={discountedPrice}
                                     cartItems={cartItems}
-                                    cartItem={cartItem}
                                     wishlistItem={wishlistItem}
                                     compareItem={compareItem}
                                     addToast={addToast}

@@ -14,7 +14,8 @@ const ProductGridWrapper = ({
   addToCompare,
   deleteFromCompare,
   wishlistItems,
-  compareItems
+  compareItems,
+  column
 }) => {
 
   const {cartItems, addToCart, removeFromCart} = useContext(CartContext);

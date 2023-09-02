@@ -2,7 +2,7 @@ export default {
     header: {
         topHeader: {
             ORDER_ONLINE: "Order Online",
-            REGISTER_LOGIN: "Register / Login"
+            REGISTER_LOGIN: "Login"
         },
         navigation: {
             CATEGORY_1: {

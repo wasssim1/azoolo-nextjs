@@ -123,8 +123,8 @@ const ProductModal = (props) => {
                                         checked={
                                           singleSize.name ===
                                           selectedProductSize
-                                            ? "checked"
-                                            : ""
+                                            ? !!"checked"
+                                            : !!""
                                         }
                                         id={singleSize.name}
                                         onChange={() => {
@@ -160,8 +160,8 @@ const ProductModal = (props) => {
                                 id={single.color}
                                 checked={
                                   single.color === selectedProductColor
-                                    ? "checked"
-                                    : ""
+                                    ? !!"checked"
+                                    : !!""
                                 }
                                 onChange={() => {
                                   setSelectedProductColor(single.color);
