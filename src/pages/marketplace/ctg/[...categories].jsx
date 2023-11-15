@@ -2,12 +2,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+
 import categoryData from "../../../../data/categories/category-one.json";
 import productsFake from "../../../../data/products.json";
 import BreadcrumbOne from "../../../components/Breadcrumb/BreadcrumbOne";
 import ProductGridWrapper from "../../../components/ProductThumb/ProductGridListWrapper";
 import CategorySlider from "../../../components/categorygrid/CategorySlider";
-import BasicLayout from "../../../components/layout/BasicLayout";
+import LayoutFive from "../../../components/layout/LayoutFive";
 import SectionTitle from "../../../components/sectiontitle/SectionTitle";
 import { SEE_MORE_LABEL } from "../../../config/productLabels";
 import { MARKETPLACE_CATEGORY_URL } from "../../../config/staticNavigation";
@@ -21,7 +22,7 @@ const MarketplaceCat = ({ products, subCategories }) => {
     const { categories } = router.query;
 
     return (
-        <BasicLayout>
+        <LayoutFive>
             {/* breadcrumb */}
 
             <BreadcrumbOne
@@ -89,7 +90,7 @@ const MarketplaceCat = ({ products, subCategories }) => {
                 }
 
             </div>
-        </BasicLayout>
+        </LayoutFive>
     );
 };
 

@@ -149,7 +149,7 @@ const HeaderFive = ({ aboutOverlay }) => {
                   <img
                     src={process.env.PUBLIC_URL + '/assets/images/logo.png'}
                     className="img-fluid"
-                    alt=""
+                    alt="Azoolo"
                   />
                 </Anchor>
               </div>

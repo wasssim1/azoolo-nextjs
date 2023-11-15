@@ -1,36 +1,36 @@
 import { useContext, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useToasts } from "react-toast-notifications";
+import similarProducts from "../../../../data/categories/similar-products.json";
+import productsFake from "../../../../data/products.json";
 import BreadcrumbOne from "../../../components/Breadcrumb/BreadcrumbOne";
 import ImageGalleryBottomThumb from "../../../components/ProductDetails/ImageGalleryBottomThumb";
 import ProductDescription from "../../../components/ProductDetails/ProductDescription";
 import ProductDescriptionTab from "../../../components/ProductDetails/ProductDescriptionTab";
 import CategorySlider from "../../../components/categorygrid/CategorySlider";
-import BasicLayout from "../../../components/layout/BasicLayout";
+import LayoutFive from "../../../components/layout/LayoutFive";
 import SectionTitle from "../../../components/sectiontitle/SectionTitle";
 import { PRODUCT_NOT_FOUND_LABEL, SIMILAR_PRODUCTS_LABEL } from "../../../config/productLabels";
 import { CartContext } from "../../../contexts/cartContext";
-import similarProducts from "../../../../data/categories/similar-products.json";
-import productsFake from "../../../../data/products.json";
 import { getDiscountPrice } from "../../../lib/product";
 
 const ProductDetail = ({
-                           product,
-                           wishlistItems,
-                           compareItems,
-                           addToWishlist,
-                           deleteFromWishlist,
-                           addToCompare,
-                           deleteFromCompare
-                       }) => {
+    product,
+    wishlistItems,
+    compareItems,
+    addToWishlist,
+    deleteFromWishlist,
+    addToCompare,
+    deleteFromCompare
+}) => {
 
-    const {cartItems, addToCart, removeFromCart} = useContext(CartContext);
+    const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
 
     useEffect(() => {
         document.querySelector("body").classList.remove("overflow-hidden");
     }, []);
 
-    const {addToast} = useToasts();
+    const { addToast } = useToasts();
 
     let discountedPrice = 0;
     let productPrice = 0;
@@ -53,7 +53,7 @@ const ProductDetail = ({
     )[0];
 
     return (
-        <BasicLayout>
+        <LayoutFive>
             {/* breadcrumb */}
             <BreadcrumbOne
                 pageTitle={product ? product.name : PRODUCT_NOT_FOUND_LABEL}
@@ -101,7 +101,7 @@ const ProductDetail = ({
                         <Row>
                             <Col>
                                 {/* product description tab */}
-                                <ProductDescriptionTab product={product}/>
+                                <ProductDescriptionTab product={product} />
                             </Col>
                         </Row>
                     </Container>
@@ -110,13 +110,13 @@ const ProductDetail = ({
 
             <div className="element-wrapper space-mt--r130 space-mb--r130">
                 <SectionTitle title={SIMILAR_PRODUCTS_LABEL}
-                              subtitle="This is where to find your satisfactory products"/>
+                    subtitle="This is where to find your satisfactory products" />
                 <CategorySlider
                     categoryData={similarProducts}
                     spaceBottomClass="space-mb--r100"
                 />
             </div>
-        </BasicLayout>
+        </LayoutFive>
     );
 };
 
@@ -129,7 +129,7 @@ const ProductDetail = ({
     return {paths, fallback: false};
 }*/
 
-export async function getServerSideProps({params: {slug}}) {
+export async function getServerSideProps({ params: { slug } }) {
     // const res = await getData(`product/${id}`);
 
     const product = await productsFake?.find(p => p.slug === slug) || null;

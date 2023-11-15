@@ -12,7 +12,7 @@
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
     "format": "prettier --write .",
     "test-all": "yarn run check-format && yarn run check-lint && yarn run check-types && yarn run build",
-    "prepare": "husky install"
+    "prepare": "npx husky install"
   },
   "dependencies": {
     "@hasanm95/cogo-toast": "https://github.com/hasanm95/cogo-toast",
