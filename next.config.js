@@ -11,7 +11,7 @@ module.exports = {
         permanent: true,
       },
       {
-        source: '/marketplace',
+        source: '/lisitng',
         destination: '/',
         permanent: true,
       },

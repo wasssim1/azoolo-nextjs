@@ -1,17 +1,13 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Col, Container, Row } from 'react-bootstrap'
 import {
-  getIndividualCategories,
   getIndividualColors,
   getProductsIndividualSizes,
-  getIndividualTags,
-  setActiveSort
-} from "../../lib/product";
+  setActiveSort,
+} from '../../lib/product'
 
 const ShopFilter = ({ products, getSortParams }) => {
-  const categories = getIndividualCategories(products);
-  const colors = getIndividualColors(products);
-  const sizes = getProductsIndividualSizes(products);
-  const tags = getIndividualTags(products);
+  const colors = getIndividualColors(products)
+  const sizes = getProductsIndividualSizes(products)
 
   return (
     <div className="shop-advance-filter">
@@ -19,43 +15,7 @@ const ShopFilter = ({ products, getSortParams }) => {
         <Row>
           <Col lg={3} md={6} className="space-mb-mobile-only--30">
             <div className="single-filter-widget">
-              <h2 className="single-filter-widget__title">Categories</h2>
-
-              {categories.length > 0 ? (
-                <ul className="single-filter-widget__list">
-                  <li>
-                    <button
-                      onClick={(e) => {
-                        getSortParams("category", "");
-                        setActiveSort(e);
-                      }}
-                    >
-                      All categories
-                    </button>
-                  </li>
-                  {categories.map((category, i) => {
-                    return (
-                      <li key={i}>
-                        <button
-                          onClick={(e) => {
-                            getSortParams("category", category);
-                            setActiveSort(e);
-                          }}
-                        >
-                          {category}
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              ) : (
-                "No categories found"
-              )}
-            </div>
-          </Col>
-          <Col lg={3} md={6} className="space-mb-mobile-only--30">
-            <div className="single-filter-widget">
-              <h2 className="single-filter-widget__title">Colors</h2>
+              <h2 className="single-filter-widget__title">Couleur</h2>
               {colors.length > 0 ? (
                 <ul className="single-filter-widget__list single-filter-widget__list--color">
                   {colors.map((color, i) => {
@@ -63,19 +23,19 @@ const ShopFilter = ({ products, getSortParams }) => {
                       <li key={i}>
                         <button
                           onClick={(e) => {
-                            getSortParams("color", color.colorName);
-                            setActiveSort(e);
+                            getSortParams('color', color.colorName)
+                            setActiveSort(e)
                           }}
                           style={{ backgroundColor: color.colorCode }}
                         ></button>
                       </li>
-                    );
+                    )
                   })}
                   <li>
                     <button
                       onClick={(e) => {
-                        getSortParams("color", "");
-                        setActiveSort(e);
+                        getSortParams('color', '')
+                        setActiveSort(e)
                       }}
                     >
                       x
@@ -83,23 +43,23 @@ const ShopFilter = ({ products, getSortParams }) => {
                   </li>
                 </ul>
               ) : (
-                "No colors found"
+                'Aucune couleur trouvée'
               )}
             </div>
           </Col>
           <Col lg={3} md={6} className="space-mb-mobile-only--30">
             <div className="single-filter-widget">
-              <h2 className="single-filter-widget__title">Sizes</h2>
+              <h2 className="single-filter-widget__title">Taille</h2>
               {sizes.length > 0 ? (
                 <ul className="single-filter-widget__list single-filter-widget__list--size">
                   <li>
                     <button
                       onClick={(e) => {
-                        getSortParams("size", "");
-                        setActiveSort(e);
+                        getSortParams('size', '')
+                        setActiveSort(e)
                       }}
                     >
-                      All sizes
+                      Toutes les tailles
                     </button>
                   </li>
                   {sizes.map((size, i) => {
@@ -107,49 +67,47 @@ const ShopFilter = ({ products, getSortParams }) => {
                       <li key={i}>
                         <button
                           onClick={(e) => {
-                            getSortParams("size", size);
-                            setActiveSort(e);
+                            getSortParams('size', size)
+                            setActiveSort(e)
                           }}
                         >
                           {size}
                         </button>
                       </li>
-                    );
+                    )
                   })}
                 </ul>
               ) : (
-                "No sizes found"
+                'Aucune taille trouvée'
               )}
             </div>
           </Col>
           <Col lg={3} md={6} className="space-mb-mobile-only--30">
             <div className="single-filter-widget">
-              <h2 className="single-filter-widget__title">Tags</h2>
-              {tags.length > 0 ? (
-                <div className="tag-container">
-                  {tags.map((tag, i) => {
-                    return (
-                      <button
-                        key={i}
-                        onClick={(e) => {
-                          getSortParams("tag", tag);
-                          setActiveSort(e);
-                        }}
-                      >
-                        {tag}
-                      </button>
-                    );
-                  })}
-                </div>
-              ) : (
-                "No tags found"
-              )}
+              <h2 className="single-filter-widget__title">Prix</h2>
+              <input type="range" min={5} max={300} step={0.5}></input>
+            </div>
+          </Col>
+          <Col lg={3} md={6} className="space-mb-mobile-only--30">
+            <div className="single-filter-widget">
+              <h2 className="single-filter-widget__title">Type</h2>
+              <ul className="single-filter-widget__list">
+                <li>
+                  <button>Type 1</button>
+                </li>
+                <li>
+                  <button>Type 2</button>
+                </li>
+                <li>
+                  <button>Type 3</button>
+                </li>
+              </ul>
             </div>
           </Col>
         </Row>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default ShopFilter;
+export default ShopFilter

@@ -4,19 +4,17 @@ export function categoriesIndexer(categKey) {
 
 export const CATEGORIES_LIST = {
   mode: {
-    key: 'mode',
-    value: 'Mode',
-    parent: null,
+    key: 'clothing',
+    value: 'Vêtements',
+    parent: 'women',
   },
   femme: {
-    key: 'femme',
+    key: 'women',
     value: 'Femme',
-    parent: 'mode',
   },
   homme: {
-    key: 'homme',
+    key: 'men',
     value: 'Homme',
-    parent: 'mode',
   },
   'enfant-bebe': {
     key: 'enfant-bebe',

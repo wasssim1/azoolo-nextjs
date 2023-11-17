@@ -13,6 +13,7 @@ import 'swiper/swiper-bundle.min.css'
 import 'yet-another-react-lightbox/plugins/thumbnails.css'
 import 'yet-another-react-lightbox/styles.css'
 import '../assets/scss/styles.scss'
+import { LayoutFive } from '../components/Layout'
 
 const workSans = Work_Sans({
   weight: ['300', '400', '500', '600', '700'],
@@ -42,7 +43,9 @@ const MyApp = ({ Component, ...rest }) => {
       </style>
       <Provider store={store}>
         <PersistGate persistor={store.__persistor} loading={<Preloader />}>
-          <Component {...props.pageProps} />
+          <LayoutFive>
+            <Component {...props.pageProps} />
+          </LayoutFive>
         </PersistGate>
       </Provider>
     </Fragment>

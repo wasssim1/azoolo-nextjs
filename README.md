@@ -25,3 +25,5 @@
    - Setup Footer
    - Setup About-us page
    - Setup FAQs & Help page
+7. Adjusr edux store
+   - Replace "cogo-toast"

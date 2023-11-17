@@ -1,14 +1,17 @@
-import { Fragment, useState } from "react";
-import { Col } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { IoIosHeartEmpty, IoIosShuffle, IoIosSearch } from "react-icons/io";
-import { Tooltip } from "react-tippy";
-import clsx from "clsx";
-import { addToCart } from "../../store/slices/cart-slice";
-import { addToWishlist, deleteFromWishlist } from "../../store/slices/wishlist-slice";
-import { addToCompare, deleteFromCompare } from "../../store/slices/compare-slice";
-import ProductModal from "./ProductModal";
-import Anchor from "../anchor";
+import clsx from 'clsx'
+import { Fragment, useState } from 'react'
+import { Col } from 'react-bootstrap'
+import { IoIosEye, IoIosHeart, IoIosHeartEmpty } from 'react-icons/io'
+import { useDispatch } from 'react-redux'
+import { Tooltip } from 'react-tippy'
+
+import { addToCart } from '../../store/slices/cart-slice'
+import {
+  addToWishlist,
+  deleteFromWishlist,
+} from '../../store/slices/wishlist-slice'
+import Anchor from '../anchor'
+import ProductModal from './ProductModal'
 
 const ProductGridList = ({
   product,
@@ -19,8 +22,8 @@ const ProductGridList = ({
   compareItem,
   bottomSpace,
 }) => {
-  const [modalShow, setModalShow] = useState(false);
-  const dispatch = useDispatch();
+  const [modalShow, setModalShow] = useState(false)
+  const dispatch = useDispatch()
 
   return (
     <Fragment>
@@ -28,33 +31,36 @@ const ProductGridList = ({
         <div className="product-grid">
           {/*=======  single product image  =======*/}
           <div className="product-grid__image">
-            <Anchor path={`/shop/product-basic/${product.slug}`} className="image-wrap">
+            <Anchor
+              path={`/shop/listing/${product.slug}`}
+              className="image-wrap"
+            >
+              <img
+                src={process.env.PUBLIC_URL + product.thumbImage[0]}
+                className="img-fluid"
+                alt={product.name}
+              />
+              {product.thumbImage.length > 1 ? (
                 <img
-                  src={process.env.PUBLIC_URL + product.thumbImage[0]}
+                  src={process.env.PUBLIC_URL + product.thumbImage[1]}
                   className="img-fluid"
                   alt={product.name}
                 />
-                {product.thumbImage.length > 1 ? (
-                  <img
-                    src={process.env.PUBLIC_URL + product.thumbImage[1]}
-                    className="img-fluid"
-                    alt={product.name}
-                  />
-                ) : (
-                  ""
-                )}
+              ) : (
+                ''
+              )}
             </Anchor>
             <div className="product-grid__floating-badges">
               {product.discount && product.discount > 0 ? (
                 <span className="onsale">-{product.discount}%</span>
               ) : (
-                ""
+                ''
               )}
-              {product.new ? <span className="hot">New</span> : ""}
+              {product.new ? <span className="hot">Nouveau</span> : ''}
               {product.stock === 0 ? (
                 <span className="out-of-stock">out</span>
               ) : (
-                ""
+                ''
               )}
             </div>
             <div className="product-grid__floating-icons">
@@ -62,8 +68,8 @@ const ProductGridList = ({
               <Tooltip
                 title={
                   wishlistItem !== undefined
-                    ? "Added to wishlist"
-                    : "Add to wishlist"
+                    ? 'Dêjà dans la Wishlist'
+                    : 'Ajouter à la Wishlist'
                 }
                 position="left"
                 trigger="mouseenter"
@@ -73,22 +79,45 @@ const ProductGridList = ({
               >
                 <button
                   onClick={
-                    wishlistItem !== undefined
+                    !!wishlistItem
                       ? () => dispatch(deleteFromWishlist(product.id))
                       : () => dispatch(addToWishlist(product))
                   }
-                  className={wishlistItem !== undefined ? "active" : ""}
                 >
-                  <IoIosHeartEmpty />
+                  {!!wishlistItem ? <IoIosHeart /> : <IoIosHeartEmpty />}
                 </button>
               </Tooltip>
 
+              {/* add to cart */}
+              {/* <Tooltip
+                title={
+                  cartItem !== undefined
+                    ? 'Dêjà dans le panier'
+                    : 'Ajouter au panier'
+                }
+                position="left"
+                trigger="mouseenter"
+                animation="shift"
+                arrow={true}
+                duration={200}
+              >
+                <button
+                  onClick={
+                    !!cartItem
+                      ? () => dispatch(deleteFromCart(product.id))
+                      : () => dispatch(addToCart(product))
+                  }
+                >
+                  {!!cartItem ? <PiShoppingCartFill /> : <PiShoppingCart />}
+                </button>
+              </Tooltip> */}
+
               {/* add to compare */}
-              <Tooltip
+              {/*  <Tooltip
                 title={
                   compareItem !== undefined
-                    ? "Added to compare"
-                    : "Add to compare"
+                    ? 'Added to compare'
+                    : 'Add to compare'
                 }
                 position="left"
                 trigger="mouseenter"
@@ -102,15 +131,15 @@ const ProductGridList = ({
                       ? () => dispatch(deleteFromCompare(product.id))
                       : () => dispatch(addToCompare(product))
                   }
-                  className={compareItem !== undefined ? "active" : ""}
+                  className={compareItem !== undefined ? 'active' : ''}
                 >
                   <IoIosShuffle />
                 </button>
-              </Tooltip>
+              </Tooltip> */}
 
               {/* quick view */}
               <Tooltip
-                title="Quick view"
+                title="Aperçu rapide"
                 position="left"
                 trigger="mouseenter"
                 animation="shift"
@@ -121,7 +150,7 @@ const ProductGridList = ({
                   onClick={() => setModalShow(true)}
                   className="d-none d-lg-block"
                 >
-                  <IoIosSearch />
+                  <IoIosEye />
                 </button>
               </Tooltip>
             </div>
@@ -131,18 +160,18 @@ const ProductGridList = ({
           <div className="product-grid__content">
             <div className="title">
               <h3>
-                <Anchor path={`/shop/product-basic/${product.slug}`}>
+                <Anchor path={`/shop/listing/${product.slug}`}>
                   {product.name}
                 </Anchor>
               </h3>
               {/* add to cart */}
               {product.affiliateLink ? (
                 <a href={product.affiliateLink} target="_blank">
-                  Buy now
+                  Acheter maintenant
                 </a>
               ) : product.variation && product.variation.length >= 1 ? (
-                <Anchor path={`/shop/product-basic/${product.slug}`}>
-                  Select Option
+                <Anchor path={`/shop/listing/${product.slug}`}>
+                  Choisir une variation
                 </Anchor>
               ) : product.stock && product.stock > 0 ? (
                 <button
@@ -152,183 +181,26 @@ const ProductGridList = ({
                     cartItem.quantity >= cartItem.stock
                   }
                 >
-                  {cartItem !== undefined ? "Added to cart" : "Add to cart"}
+                  {cartItem !== undefined
+                    ? 'Déjà dans le panier'
+                    : 'Ajouter au panier'}
                 </button>
               ) : (
-                <button disabled>Out of Stock</button>
+                <button disabled>Pas de Stock</button>
               )}
             </div>
             <div className="price">
               {product.discount > 0 ? (
                 <Fragment>
-                  <span className="main-price discounted">${productPrice}</span>
-                  <span className="discounted-price">${discountedPrice}</span>
+                  <span className="main-price discounted">
+                    {productPrice} TND
+                  </span>
+                  <span className="discounted-price">
+                    {discountedPrice} TND
+                  </span>
                 </Fragment>
               ) : (
-                <span className="main-price">${productPrice}</span>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className="product-list">
-          {/*=======  single product image  =======*/}
-          <div className="product-list__image">
-            <Anchor path={`/shop/product-basic/${product.slug}`} className="image-wrap">
-                <img
-                  src={process.env.PUBLIC_URL + product.thumbImage[0]}
-                  className="img-fluid"
-                  alt={product.name}
-                />
-                {product.thumbImage.length > 1 ? (
-                  <img
-                    src={process.env.PUBLIC_URL + product.thumbImage[1]}
-                    className="img-fluid"
-                    alt={product.name}
-                  />
-                ) : (
-                  ""
-                )}
-            </Anchor>
-            <div className="product-list__floating-badges">
-              {product.discount && product.discount > 0 ? (
-                <span className="onsale">-{product.discount}%</span>
-              ) : (
-                ""
-              )}
-              {product.new ? <span className="hot">New</span> : ""}
-              {product.stock === 0 ? (
-                <span className="out-of-stock">out</span>
-              ) : (
-                ""
-              )}
-            </div>
-            <div className="product-list__floating-icons">
-              {/* add to wishlist */}
-              <Tooltip
-                title={
-                  wishlistItem !== undefined
-                    ? "Added to wishlist"
-                    : "Add to wishlist"
-                }
-                position="left"
-                trigger="mouseenter"
-                animation="shift"
-                arrow={true}
-                duration={200}
-              >
-                <button
-                  onClick={
-                    wishlistItem !== undefined
-                      ? () => dispatch(deleteFromWishlist(product.id))
-                      : () => dispatch(addToWishlist(product))
-                  }
-                  className={wishlistItem !== undefined ? "active" : ""}
-                >
-                  <IoIosHeartEmpty />
-                </button>
-              </Tooltip>
-
-              {/* add to compare */}
-              <Tooltip
-                title={
-                  compareItem !== undefined
-                    ? "Added to compare"
-                    : "Add to compare"
-                }
-                position="left"
-                trigger="mouseenter"
-                animation="shift"
-                arrow={true}
-                duration={200}
-              >
-                <button
-                  onClick={
-                    compareItem !== undefined
-                      ? () => dispatch(deleteFromCompare(product.id))
-                      : () => dispatch(addToCompare(product))
-                  }
-                  className={compareItem !== undefined ? "active" : ""}
-                >
-                  <IoIosShuffle />
-                </button>
-              </Tooltip>
-
-              {/* quick view */}
-              <Tooltip
-                title="Quick view"
-                position="left"
-                trigger="mouseenter"
-                animation="shift"
-                arrow={true}
-                duration={200}
-              >
-                <button
-                  onClick={() => setModalShow(true)}
-                  className="d-none d-lg-block"
-                >
-                  <IoIosSearch />
-                </button>
-              </Tooltip>
-            </div>
-          </div>
-
-          {/*=======  single product content  =======*/}
-          <div className="product-list__content">
-            <div className="title">
-              <h3>
-                <Anchor path={`/shop/product-basic/${product.slug}`}>
-                  {product.name}
-                </Anchor>
-              </h3>
-            </div>
-            <div className="price">
-              {product.discount > 0 ? (
-                <Fragment>
-                  <span className="main-price discounted">${productPrice}</span>
-                  <span className="discounted-price">${discountedPrice}</span>
-                </Fragment>
-              ) : (
-                <span className="main-price">${productPrice}</span>
-              )}
-            </div>
-
-            <div className="short-description">{product.shortDescription}</div>
-            <div className="add-to-cart">
-              {/* add to cart */}
-              {product.affiliateLink ? (
-                <a
-                  href={product.affiliateLink}
-                  target="_blank"
-                  className="lezada-button lezada-button--medium"
-                >
-                  Buy now
-                </a>
-              ) : product.variation && product.variation.length >= 1 ? (
-                <Anchor
-                  path={`/shop/product-basic/${product.slug}`}
-                  className="lezada-button lezada-button--medium"
-                >
-                    Select Option
-                </Anchor>
-              ) : product.stock && product.stock > 0 ? (
-                <button
-                  onClick={() => dispatch(addToCart(product))}
-                  disabled={
-                    cartItem !== undefined &&
-                    cartItem.quantity >= cartItem.stock
-                  }
-                  className="lezada-button lezada-button--medium"
-                >
-                  {cartItem !== undefined ? "Added to cart" : "Add to cart"}
-                </button>
-              ) : (
-                <button
-                  disabled
-                  className="lezada-button lezada-button--medium"
-                >
-                  Out of Stock
-                </button>
+                <span className="main-price">{productPrice} TND</span>
               )}
             </div>
           </div>
@@ -346,7 +218,7 @@ const ProductGridList = ({
         compareitem={compareItem}
       />
     </Fragment>
-  );
-};
+  )
+}
 
-export default ProductGridList;
+export default ProductGridList

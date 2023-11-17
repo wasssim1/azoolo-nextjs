@@ -1,18 +1,18 @@
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Paginator from "react-hooks-paginator";
 import { SlideDown } from "react-slidedown";
-import BreadcrumbOne from "../../../components/Breadcrumb/BreadcrumbOne";
-import ShopFilter from "../../../components/Shop/ShopFilter";
-import ShopHeader from "../../../components/Shop/ShopHeader";
-import ShopProducts from "../../../components/Shop/ShopProducts";
-import ShopSidebar from "../../../components/Shop/ShopSidebar";
-import BasicLayout from "../../../components/layout/BasicLayout";
-import productsFake from "../../../../data/products.json";
-import { getSortedProducts } from "../../../lib/product";
 
-const SubCategoryPage = ({ products }) => {
+import { BreadcrumbOne } from "../../components/Breadcrumb";
+import ShopFilter from "../../components/Shop/ShopFilter";
+import ShopHeader from "../../components/Shop/ShopHeader";
+import ShopProducts from "../../components/Shop/ShopProducts";
+import ShopSidebar from "../../components/Shop/ShopSidebar";
+import Anchor from "../../components/anchor";
+import productsFake from "../../data/products.json";
+import { getSortedProducts } from "../../lib/product";
+
+const SubCategoryPage = ({ categories, products }) => {
     const [layout, setLayout] = useState("grid three-column");
     const [sortType, setSortType] = useState("");
     const [sortValue, setSortValue] = useState("");
@@ -53,21 +53,30 @@ const SubCategoryPage = ({ products }) => {
     }, [offset, products, sortType, sortValue, filterSortType, filterSortValue]);
 
     return (
-        <BasicLayout>
+        <Fragment>
             {/* breadcrumb */}
             <BreadcrumbOne
-                pageTitle="Test"
-                backgroundImage="/assets/images/backgrounds/breadcrumb-bg-1.png" className={undefined}>
+                pageTitle={[...categories].slice(-1)}
+                backgroundImage="/assets/images/backgrounds/breadcrumb-bg-1.png"
+            >
                 <ul className="breadcrumb__list">
                     <li>
-                        <Link href="/" as={process.env.PUBLIC_URL + "/"}>
-                            <a>Home</a>
-                        </Link>
+                        <Anchor path="/">
+                            Acceuil
+                        </Anchor>
                     </li>
 
-                    <li>test</li>
+                    {categories.map((categ, idx) => (
+                        <li>
+                            {/* <Anchor path={`/shop/${[...categories.slice()]}`}> */}
+                            {categ}
+                            {/* </Anchor> */}
+                        </li>
+                    ))}
+
                 </ul>
             </BreadcrumbOne>
+
             <div className="shop-page-content">
                 {/* shop page header */}
                 <ShopHeader
@@ -77,8 +86,8 @@ const SubCategoryPage = ({ products }) => {
                     sortedProductCount={currentData.length}
                     shopTopFilterStatus={shopTopFilterStatus}
                     setShopTopFilterStatus={setShopTopFilterStatus}
-                    layoutClass="wide" listMode={undefined}                
-                    />
+                    listMode={undefined}
+                />
 
                 {/* shop header filter */}
                 <SlideDown closed={shopTopFilterStatus ? false : true}>
@@ -87,7 +96,7 @@ const SubCategoryPage = ({ products }) => {
 
                 {/* shop page body */}
                 <div className="shop-page-content__body space-mt--r130 space-mb--r130">
-                    <Container className="wide">
+                    <Container>
                         <Row>
                             <Col
                                 lg={3}
@@ -123,18 +132,27 @@ const SubCategoryPage = ({ products }) => {
                     </Container>
                 </div>
             </div>
-        </BasicLayout>
+        </Fragment>
     );
 };
 
-export async function getServerSideProps({params: {subCateg}}) {
+export async function getServerSideProps({ params: { categories } }) {
     // const res = await getData(`product/${id}`);
+
+    console.log({ categories });
+
+    /**
+     * TODO:
+     * validate categories on server
+     * if not valid -> set a flag and render category not found warning message and redirect to 404
+     */
 
     const products = await productsFake;
 
     return {
         props: {
-            products: products,
+            categories,
+            products,
         },
     }
 }

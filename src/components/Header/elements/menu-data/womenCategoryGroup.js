@@ -1,20 +1,20 @@
 const SUB_GROUP_1 = [
   {
-    key: 'decor',
-    label: 'Decor',
-    path: '/category/decor',
+    key: 'clothing',
+    label: 'Jeans',
+    path: '/shop/women/clothing/jeans',
+    imgSrc: '/assets/images/home-preview/decor.jpg',
+  },
+  {
+    key: 'sheos',
+    label: 'Chaussures',
+    path: '/shop/women/clothing/shoes',
     imgSrc: '/assets/images/home-preview/decor.jpg',
   },
   {
     key: 'decor',
     label: 'Decor',
-    path: '/category/decor',
-    imgSrc: '/assets/images/home-preview/decor.jpg',
-  },
-  {
-    key: 'decor',
-    label: 'Decor',
-    path: '/category/decor',
+    path: 'shop/women/clothing/decor',
     imgSrc: '/assets/images/home-preview/decor.jpg',
   },
 ]
@@ -22,7 +22,8 @@ const SUB_GROUP_1 = [
 const MENU_SUB_GROUPS = [
   {
     key: 'menu-sub-grp-1-1',
-    label: 'Sug Grp 1',
+    label: 'Vêtements',
+    path: '/shop/women/clothing',
     subGroupList: SUB_GROUP_1,
   },
   {
@@ -44,7 +45,7 @@ const MENU_SUB_GROUPS = [
 
 export const WOMEN_CATEGORY_GROUP = {
   key: 'menu-grp-2',
-  path: '/women',
+  path: '/shop/women',
   label: 'Femme',
   className: 'sub-menu sub-menu--mega sub-menu--mega--column-5',
   isRelativePosition: false,

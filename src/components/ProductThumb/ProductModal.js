@@ -1,18 +1,24 @@
-import { useState, Fragment } from "react";
-import { Modal, Row, Col } from "react-bootstrap";
-import { IoIosHeartEmpty, IoIosShuffle } from "react-icons/io";
-import CustomScroll from "react-custom-scroll";
-import { useDispatch, useSelector } from "react-redux";
-import { getProductCartQuantity } from "../../lib/product";
-import { ProductRating } from "../Product";
-import Swiper, { SwiperSlide } from "../swiper";
-import { addToCart } from "../../store/slices/cart-slice";
-import { addToWishlist, deleteFromWishlist } from "../../store/slices/wishlist-slice";
-import { addToCompare, deleteFromCompare } from "../../store/slices/compare-slice";
+import { Fragment, useState } from 'react'
+import { Col, Modal, Row } from 'react-bootstrap'
+import CustomScroll from 'react-custom-scroll'
+import { IoIosHeartEmpty, IoIosShuffle } from 'react-icons/io'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProductCartQuantity } from '../../lib/product'
+import { addToCart } from '../../store/slices/cart-slice'
+import {
+  addToCompare,
+  deleteFromCompare,
+} from '../../store/slices/compare-slice'
+import {
+  addToWishlist,
+  deleteFromWishlist,
+} from '../../store/slices/wishlist-slice'
+import { ProductRating } from '../Product'
+import Swiper, { SwiperSlide } from '../swiper'
 
 const gallerySwiperParams = {
-  pagination:  true
-};
+  pagination: true,
+}
 
 const ProductModal = ({
   show,
@@ -23,26 +29,26 @@ const ProductModal = ({
   wishlistitem,
   compareitem,
 }) => {
-  const dispatch = useDispatch();
-  const { cartItems } = useSelector((state) => state.cart);
+  const dispatch = useDispatch()
+  const { cartItems } = useSelector((state) => state.cart)
 
   const [selectedProductColor, setSelectedProductColor] = useState(
-    product.variation ? product.variation[0].color : ""
-  );
+    product.variation ? product.variation[0].color : '',
+  )
   const [selectedProductSize, setSelectedProductSize] = useState(
-    product.variation ? product.variation[0].size[0].name : ""
-  );
+    product.variation ? product.variation[0].size[0].name : '',
+  )
   const [productStock, setProductStock] = useState(
-    product.variation ? product.variation[0].size[0].stock : product.stock
-  );
-  const [quantityCount, setQuantityCount] = useState(1);
+    product.variation ? product.variation[0].size[0].stock : product.stock,
+  )
+  const [quantityCount, setQuantityCount] = useState(1)
 
   const productCartQty = getProductCartQuantity(
     cartItems,
     product,
     selectedProductColor,
-    selectedProductSize
-  );
+    selectedProductSize,
+  )
 
   const onCloseModal = () => {
     onHide()
@@ -85,12 +91,12 @@ const ProductModal = ({
                   {product.discount > 0 ? (
                     <Fragment>
                       <span className="main-price discounted">
-                        ${productprice}
+                        {productprice} TND
                       </span>
-                      <span className="main-price">${discountedprice}</span>
+                      <span className="main-price">{discountedprice} TND</span>
                     </Fragment>
                   ) : (
-                    <span className="main-price">${productprice} </span>
+                    <span className="main-price">{productprice} TND</span>
                   )}
                 </div>
                 {product.rating && product.rating > 0 ? (
@@ -100,7 +106,7 @@ const ProductModal = ({
                     </div>
                   </div>
                 ) : (
-                  ""
+                  ''
                 )}
                 <div className="product-quickview__description space-mb--30">
                   <p>{product.shortDescription}</p>
@@ -109,7 +115,9 @@ const ProductModal = ({
                 {product.variation ? (
                   <div className="product-quickview__size-color">
                     <div className="product-quickview__size space-mb--20">
-                      <div className="product-quickview__size__title">Size</div>
+                      <div className="product-quickview__size__title">
+                        Taille
+                      </div>
                       <div className="product-quickview__size__content">
                         {product.variation &&
                           product.variation.map((single) => {
@@ -123,31 +131,31 @@ const ProductModal = ({
                                         checked={
                                           singleSize.name ===
                                           selectedProductSize
-                                            ? "checked"
-                                            : ""
+                                            ? 'checked'
+                                            : ''
                                         }
                                         id={singleSize.name}
                                         onChange={() => {
                                           setSelectedProductSize(
-                                            singleSize.name
-                                          );
-                                          setProductStock(singleSize.stock);
-                                          setQuantityCount(1);
+                                            singleSize.name,
+                                          )
+                                          setProductStock(singleSize.stock)
+                                          setQuantityCount(1)
                                         }}
                                       />
                                       <label htmlFor={singleSize.name}>
                                         {singleSize.name}
                                       </label>
                                     </Fragment>
-                                  );
+                                  )
                                 })
-                              : "";
+                              : ''
                           })}
                       </div>
                     </div>
                     <div className="product-quickview__color space-mb--20">
                       <div className="product-quickview__color__title">
-                        Color
+                        Couleur
                       </div>
                       <div className="product-quickview__color__content">
                         {product.variation.map((single, i) => {
@@ -160,14 +168,14 @@ const ProductModal = ({
                                 id={single.color}
                                 checked={
                                   single.color === selectedProductColor
-                                    ? "checked"
-                                    : ""
+                                    ? 'checked'
+                                    : ''
                                 }
                                 onChange={() => {
-                                  setSelectedProductColor(single.color);
-                                  setSelectedProductSize(single.size[0].name);
-                                  setProductStock(single.size[0].stock);
-                                  setQuantityCount(1);
+                                  setSelectedProductColor(single.color)
+                                  setSelectedProductSize(single.size[0].name)
+                                  setProductStock(single.size[0].stock)
+                                  setQuantityCount(1)
                                 }}
                               />
                               <label
@@ -175,13 +183,13 @@ const ProductModal = ({
                                 style={{ backgroundColor: single.colorCode }}
                               ></label>
                             </Fragment>
-                          );
+                          )
                         })}
                       </div>
                     </div>
                   </div>
                 ) : (
-                  ""
+                  ''
                 )}
                 {product.affiliateLink ? (
                   <div className="product-quickview__quality">
@@ -192,7 +200,7 @@ const ProductModal = ({
                         target="_blank"
                         className="lezada-button lezada-button--medium"
                       >
-                        Buy Now
+                        Acheter Maintenant
                       </a>
                     </div>
                   </div>
@@ -200,13 +208,13 @@ const ProductModal = ({
                   <Fragment>
                     <div className="product-quickview__quantity space-mb--20">
                       <div className="product-quickview__quantity__title">
-                        Quantity
+                        Quantité
                       </div>
                       <div className="cart-plus-minus">
                         <button
                           onClick={() =>
                             setQuantityCount(
-                              quantityCount > 1 ? quantityCount - 1 : 1
+                              quantityCount > 1 ? quantityCount - 1 : 1,
                             )
                           }
                           className="qtybutton"
@@ -224,7 +232,7 @@ const ProductModal = ({
                             setQuantityCount(
                               quantityCount < productStock - productCartQty
                                 ? quantityCount + 1
-                                : quantityCount
+                                : quantityCount,
                             )
                           }
                           className="qtybutton"
@@ -238,35 +246,45 @@ const ProductModal = ({
                       {productStock && productStock > 0 ? (
                         <button
                           onClick={() =>
-                            dispatch(addToCart({
-                              ...product,
-                              quantity: quantityCount,
-                              selectedProductColor: selectedProductColor ? selectedProductColor : product.selectedProductColor ? product.selectedProductColor : null,
-                              selectedProductSize: selectedProductSize ? selectedProductSize : product.selectedProductSize ? product.selectedProductSize : null
-                            }))
+                            dispatch(
+                              addToCart({
+                                ...product,
+                                quantity: quantityCount,
+                                selectedProductColor: selectedProductColor
+                                  ? selectedProductColor
+                                  : product.selectedProductColor
+                                  ? product.selectedProductColor
+                                  : null,
+                                selectedProductSize: selectedProductSize
+                                  ? selectedProductSize
+                                  : product.selectedProductSize
+                                  ? product.selectedProductSize
+                                  : null,
+                              }),
+                            )
                           }
                           disabled={productCartQty >= productStock}
                           className="lezada-button lezada-button--medium product-quickview__cart space-mr--10"
                         >
-                          Add To Cart
+                          Ajouter au panier
                         </button>
                       ) : (
                         <button
                           className="lezada-button lezada-button--medium product-quickview__ofs space-mr--10"
                           disabled
                         >
-                          Out of Stock
+                          Pas de Stock
                         </button>
                       )}
 
                       <button
                         className={`product-quickview__wishlist space-mr--10 ${
-                          wishlistitem !== undefined ? "active" : ""
+                          wishlistitem !== undefined ? 'active' : ''
                         }`}
                         title={
                           wishlistitem !== undefined
-                            ? "Added to wishlist"
-                            : "Add to wishlist"
+                            ? 'Added to wishlist'
+                            : 'Add to wishlist'
                         }
                         onClick={
                           wishlistitem !== undefined
@@ -277,14 +295,14 @@ const ProductModal = ({
                         <IoIosHeartEmpty />
                       </button>
 
-                      <button
+                      {/* <button
                         className={`product-quickview__compare space-mr--10 ${
-                          compareitem !== undefined ? "active" : ""
+                          compareitem !== undefined ? 'active' : ''
                         }`}
                         title={
                           compareitem !== undefined
-                            ? "Added to compare"
-                            : "Add to compare"
+                            ? 'Added to compare'
+                            : 'Add to compare'
                         }
                         onClick={
                           compareitem !== undefined
@@ -293,7 +311,7 @@ const ProductModal = ({
                         }
                       >
                         <IoIosShuffle />
-                      </button>
+                      </button> */}
                     </div>
                   </Fragment>
                 )}
@@ -303,7 +321,7 @@ const ProductModal = ({
         </Row>
       </Modal.Body>
     </Modal>
-  );
-};
+  )
+}
 
-export default ProductModal;
+export default ProductModal

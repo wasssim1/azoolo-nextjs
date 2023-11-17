@@ -38,9 +38,9 @@ const Navigation = () => {
                 <IoIosArrowDown />
                 <ul className={className}>
                   {/* Menu Sub-Group */}
-                  {subGroupsList.map(({ key, label, subGroupList }) => (
+                  {subGroupsList.map(({ key, label, path, subGroupList }) => (
                     <li key={key} className="sub-menu--mega__title">
-                      <Anchor path="#">{label}</Anchor>
+                      <Anchor path={path}>{label}</Anchor>
                       <ul className="sub-menu--mega__list">
                         {/* Sub-Group Menu List Item */}
                         {subGroupList.map(({ key, label, path, imgSrc }) => (

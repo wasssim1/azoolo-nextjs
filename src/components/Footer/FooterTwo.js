@@ -1,12 +1,16 @@
-import { Container, Row, Col } from "react-bootstrap";
-import clsx from "clsx";
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
-import { SubscribeEmailTwo } from "../Newsletter";
+import clsx from 'clsx'
+import { Col, Container, Row } from 'react-bootstrap'
+import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
+
+import { SubscribeEmailTwo } from '../Newsletter'
 
 const FooterTwo = ({ footerBgClass }) => {
   return (
     <footer
-      className={clsx("space-pt--100 space-pb--50", footerBgClass ? footerBgClass : "bg-color--grey")}
+      className={clsx(
+        'space-pt--100 space-pb--50',
+        footerBgClass ? footerBgClass : 'bg-color--grey',
+      )}
     >
       <Container className="wide">
         <Row>
@@ -16,9 +20,9 @@ const FooterTwo = ({ footerBgClass }) => {
               <img
                 src={
                   process.env.PUBLIC_URL + footerBgClass ===
-                  "bg-color--blue-two"
-                    ? "/assets/images/logo-alt.png"
-                    : "/assets/images/logo.png"
+                  'bg-color--blue-two'
+                    ? '/assets/images/logo-alt.png'
+                    : '/assets/images/logo.png'
                 }
                 className="img-fluid"
                 alt=""
@@ -27,46 +31,51 @@ const FooterTwo = ({ footerBgClass }) => {
 
             {/*=======  copyright text  =======*/}
             <div className="footer-single-widget__copyright">
-              &copy; {new Date().getFullYear() + " "}
+              &copy; {new Date().getFullYear() + ' '}
               <a href="https://www.hasthemes.com" target="_blank">
-                lezada
+                Azoolo
               </a>
-              <span>All Rights Reserved</span>
+              <span>Tous droits réservés</span>
             </div>
           </Col>
 
           <Col className="footer-single-widget space-mb--50">
-            <h5 className="footer-single-widget__title">ABOUT</h5>
+            <h5 className="footer-single-widget__title">À propos</h5>
             <nav className="footer-single-widget__nav">
               <ul>
                 <li>
-                  <a href="#">About us</a>
+                  <a href="#">Qui sommes-nous?</a>
                 </li>
                 <li>
-                  <a href="#">Store location</a>
+                  <a href="#">Service clients</a>
                 </li>
                 <li>
-                  <a href="#">Contact</a>
+                  <a href="#">Contactez-Nous</a>
                 </li>
                 <li>
-                  <a href="#">Orders tracking</a>
+                  <a href="#">Devenir Azoolo-Partner</a>
                 </li>
               </ul>
             </nav>
           </Col>
 
           <Col className="footer-single-widget space-mb--50">
-            <h5 className="footer-single-widget__title">USEFUL LINKS</h5>
+            <h5 className="footer-single-widget__title">Liens utiles</h5>
             <nav className="footer-single-widget__nav">
               <ul>
                 <li>
-                  <a href="#">Returns</a>
+                  <a href="#">Politique de retour</a>
                 </li>
                 <li>
-                  <a href="#">Support Policy</a>
+                  <a href="#">
+                    <a href="#">Suivre mon colis</a>
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Size guide</a>
+                  <a href="#">Guides des tailles</a>
+                </li>
+                <li>
+                  <a href="#">Support</a>
                 </li>
                 <li>
                   <a href="#">FAQs</a>
@@ -76,7 +85,7 @@ const FooterTwo = ({ footerBgClass }) => {
           </Col>
 
           <Col className="footer-single-widget space-mb--50">
-            <h5 className="footer-single-widget__title">FOLLOW US ON</h5>
+            <h5 className="footer-single-widget__title">SUIVEZ-NOUS SUR</h5>
             <nav className="footer-single-widget__nav footer-single-widget__nav--social">
               <ul>
                 <li>
@@ -116,7 +125,7 @@ const FooterTwo = ({ footerBgClass }) => {
         </Row>
       </Container>
     </footer>
-  );
-};
+  )
+}
 
-export default FooterTwo;
+export default FooterTwo

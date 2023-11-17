@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux'
 
+import { Fragment } from 'react'
 import { CategoryGrid, CategoryGridFour } from '../components/Category'
 import { ImageCta } from '../components/Cta'
 import { HeroSliderOne } from '../components/HeroSlider'
 import AccessoriesContent from '../components/HomeContent/AccessoriesContent'
-import { LayoutFive } from '../components/Layout'
 import { ProductTab } from '../components/ProductTab'
 import heroSliderData from '../data/hero-sliders/hero-slider-one.json'
 import imageCtaData from '../data/image-cta/image-cta-one.json'
@@ -17,7 +17,7 @@ const Home = () => {
   const saleProducts = getProducts(products, 'decor', 'sale', 9)
 
   return (
-    <LayoutFive>
+    <Fragment>
       {/* hero slider */}
       <HeroSliderOne sliderData={heroSliderData} />
 
@@ -54,7 +54,7 @@ const Home = () => {
         title={imageCtaData.title}
         url={imageCtaData.url}
       />
-    </LayoutFive>
+    </Fragment>
   )
 }
 

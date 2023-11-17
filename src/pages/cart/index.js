@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { IoIosClose, IoMdCart } from 'react-icons/io'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { BreadcrumbOne } from '../../components/Breadcrumb'
-import { LayoutFive } from '../../components/Layout'
 import Anchor from '../../components/anchor'
 import { cartItemStock, getDiscountPrice } from '../../lib/product'
 import {
@@ -27,7 +26,7 @@ const Cart = () => {
   })
 
   return (
-    <LayoutFive>
+    <Fragment>
       {/* breadcrumb */}
       <BreadcrumbOne
         pageTitle="Panier"
@@ -262,7 +261,7 @@ const Cart = () => {
           {/* TODO: Add Recommended items section */}
         </Container>
       </div>
-    </LayoutFive>
+    </Fragment>
   )
 }
 
