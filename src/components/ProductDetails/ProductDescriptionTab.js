@@ -1,6 +1,6 @@
-import Tab from "react-bootstrap/Tab";
-import Nav from "react-bootstrap/Nav";
-import { IoIosStar, IoIosStarOutline } from "react-icons/io";
+import Nav from 'react-bootstrap/Nav'
+import Tab from 'react-bootstrap/Tab'
+import { IoIosStar, IoIosStarOutline } from 'react-icons/io'
 
 const ProductDescriptionTab = ({ product }) => {
   return (
@@ -14,13 +14,11 @@ const ProductDescriptionTab = ({ product }) => {
             <Nav.Link eventKey="description">Description</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="additionalInfo">
-              Additional Information
-            </Nav.Link>
+            <Nav.Link eventKey="additionalInfo">Détail</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey="reviews">
-              Reviews {product.ratingCount ? `(${product.ratingCount})` : ""}
+              Avis {product.ratingCount ? `(${product.ratingCount})` : ''}
             </Nav.Link>
           </Nav.Item>
         </Nav>
@@ -35,15 +33,15 @@ const ProductDescriptionTab = ({ product }) => {
               <table className="shop-attributes">
                 <tbody>
                   <tr>
-                    <th>Size</th>
+                    <th>Taille</th>
                     <td>
                       <p>L, M, S, XS</p>
                     </td>
                   </tr>
                   <tr>
-                    <th>Color</th>
+                    <th>Couleur</th>
                     <td>
-                      <p>Black, Blue, Brown</p>
+                      <p>Noir, Bleu, Rouge</p>
                     </td>
                   </tr>
                 </tbody>
@@ -53,122 +51,50 @@ const ProductDescriptionTab = ({ product }) => {
           <Tab.Pane eventKey="reviews">
             <div className="product-description-tab__review">
               <h2 className="review-title space-mb--20">
-                {product.ratingCount ? product.ratingCount : ""} reviews on{" "}
+                {product.ratingCount ? product.ratingCount : ''} avis sur{' '}
                 {product.name}
               </h2>
               {/*=======  single review  =======*/}
-              <div className="single-review">
-                <div className="single-review__image">
-                  <img
-                    src={
-                      process.env.PUBLIC_URL + "/assets/images/user/user1.jpeg"
-                    }
-                    className="img-fluid"
-                    alt=""
-                  />
-                </div>
-                <div className="single-review__content">
-                  {/*=======  rating  =======*/}
-                  <div className="single-review__rating">
-                    <IoIosStar />
-                    <IoIosStar />
-                    <IoIosStar />
-                    <IoIosStar />
-                    <IoIosStarOutline />
+              {product.ratings?.map((review) => (
+                <div className="single-review">
+                  <div className="single-review__image">
+                    <img
+                      src={process.env.PUBLIC_URL + review.user?.avatar}
+                      className="img-fluid"
+                      alt="reviewer_avatar"
+                    />
                   </div>
+                  <div className="single-review__content">
+                    {/*=======  rating  =======*/}
+                    <div className="single-review__rating">
+                      <IoIosStar />
+                      <IoIosStar />
+                      <IoIosStar />
+                      <IoIosStar />
+                      <IoIosStarOutline />
+                    </div>
 
-                  {/*=======  username and date  =======*/}
-                  <p className="username">
-                    Scott James <span className="date">/ April 5, 2020</span>
-                  </p>
+                    {/*=======  username and date  =======*/}
+                    <p className="username">
+                      {review.user?.fullName}{' '}
+                      <span className="date">/ {review.date}</span>
+                    </p>
 
-                  {/*=======  message  =======*/}
-                  <p className="message">
-                    Thanks for always keeping your HTML themes up to date. Your
-                    level of support and dedication is second to none.
-                  </p>
-                  {/*=======  End of message  =======*/}
-                </div>
-              </div>
-              {/*=======  End of single review  =======*/}
-              {/*=======  single review  =======*/}
-              <div className="single-review">
-                <div className="single-review__image">
-                  <img
-                    src={
-                      process.env.PUBLIC_URL + "/assets/images/user/user2.jpeg"
-                    }
-                    className="img-fluid"
-                    alt=""
-                  />
-                </div>
-                <div className="single-review__content">
-                  {/*=======  rating  =======*/}
-                  <div className="single-review__rating">
-                    <IoIosStar />
-                    <IoIosStar />
-                    <IoIosStar />
-                    <IoIosStar />
-                    <IoIosStarOutline />
+                    {/*=======  message  =======*/}
+                    <p className="message">{review.reviewText}</p>
+                    {/*=======  End of message  =======*/}
                   </div>
-                  {/*=======  End of rating  =======*/}
-                  {/*=======  username and date  =======*/}
-                  <p className="username">
-                    Owen Christ <span className="date">/ April 7, 2020</span>
-                  </p>
-                  {/*=======  End of username and date  =======*/}
-                  {/*=======  message  =======*/}
-                  <p className="message">
-                    I didn’t expect this poster to arrive folded. Now there are
-                    lines on the poster and one sad Ninja.
-                  </p>
-                  {/*=======  End of message  =======*/}
                 </div>
-              </div>
-              {/*=======  End of single review  =======*/}
-              {/*=======  single review  =======*/}
-              <div className="single-review">
-                <div className="single-review__image">
-                  <img
-                    src={
-                      process.env.PUBLIC_URL + "/assets/images/user/user3.jpeg"
-                    }
-                    className="img-fluid"
-                    alt=""
-                  />
-                </div>
-                <div className="single-review__content">
-                  {/*=======  rating  =======*/}
-                  <div className="single-review__rating">
-                    <IoIosStar />
-                    <IoIosStar />
-                    <IoIosStar />
-                    <IoIosStar />
-                    <IoIosStarOutline />
-                  </div>
-                  {/*=======  End of rating  =======*/}
-                  {/*=======  username and date  =======*/}
-                  <p className="username">
-                    Edna Watson <span className="date">/ April 5, 2020</span>
-                  </p>
-                  {/*=======  End of username and date  =======*/}
-                  {/*=======  message  =======*/}
-                  <p className="message">
-                    Can’t wait to start mixin’ with this one!
-                    Irba-irr-Up-up-up-up-date your theme!
-                  </p>
-                  {/*=======  End of message  =======*/}
-                </div>
-              </div>
-              {/*=======  End of single review  =======*/}
-              <h2 className="review-title space-mb--20">Add a review</h2>
+              ))}
+
+              <h2 className="review-title space-mb--20">Ajouter votre avis</h2>
               <p className="text-center">
-                Your email address will not be published. Required fields are
-                marked *
+                Votre adresse email ne sera pas publiée. Les champs requis sont
+                indiqués *
               </p>
               {/*=======  review form  =======*/}
               <div className="lezada-form lezada-form--review">
-                <form>
+                <form onSubmit={(e) => e.preventDefault()}>
                   <div className="row">
                     <div className="col-lg-6 space-mb--20">
                       <input type="text" placeholder="Name *" required />
@@ -178,7 +104,7 @@ const ProductDescriptionTab = ({ product }) => {
                     </div>
                     <div className="col-lg-12 space-mb--20">
                       <span className="rating-title space-mr--20">
-                        YOUR RATING
+                        Votre évaluation
                       </span>
                       <span className="product-rating">
                         <IoIosStarOutline />
@@ -193,7 +119,7 @@ const ProductDescriptionTab = ({ product }) => {
                         cols={30}
                         rows={10}
                         placeholder="Your review *"
-                        defaultValue={""}
+                        defaultValue={''}
                       />
                     </div>
                     <div className="col-lg-12 text-center">
@@ -201,7 +127,7 @@ const ProductDescriptionTab = ({ product }) => {
                         type="submit"
                         className="lezada-button lezada-button--medium"
                       >
-                        submit
+                        Publier
                       </button>
                     </div>
                   </div>
@@ -213,7 +139,7 @@ const ProductDescriptionTab = ({ product }) => {
         </Tab.Content>
       </Tab.Container>
     </div>
-  );
-};
+  )
+}
 
-export default ProductDescriptionTab;
+export default ProductDescriptionTab

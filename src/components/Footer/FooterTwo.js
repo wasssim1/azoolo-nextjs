@@ -44,16 +44,16 @@ const FooterTwo = ({ footerBgClass }) => {
             <nav className="footer-single-widget__nav">
               <ul>
                 <li>
-                  <a href="#">Qui sommes-nous?</a>
+                  <a href="/">Qui sommes-nous?</a>
                 </li>
                 <li>
-                  <a href="#">Service clients</a>
+                  <a href="/">Service clients</a>
                 </li>
                 <li>
-                  <a href="#">Contactez-Nous</a>
+                  <a href="/">Contactez-Nous</a>
                 </li>
                 <li>
-                  <a href="#">Devenir Azoolo-Partner</a>
+                  <a href="/">Devenir Azoolo-Partner</a>
                 </li>
               </ul>
             </nav>
@@ -64,21 +64,19 @@ const FooterTwo = ({ footerBgClass }) => {
             <nav className="footer-single-widget__nav">
               <ul>
                 <li>
-                  <a href="#">Politique de retour</a>
+                  <a href="/">Politique de retour</a>
                 </li>
                 <li>
-                  <a href="#">
-                    <a href="#">Suivre mon colis</a>
-                  </a>
+                  <a href="/">Suivre mon colis</a>
                 </li>
                 <li>
-                  <a href="#">Guides des tailles</a>
+                  <a href="/">Guides des tailles</a>
                 </li>
                 <li>
-                  <a href="#">Support</a>
+                  <a href="/">Support</a>
                 </li>
                 <li>
-                  <a href="#">FAQs</a>
+                  <a href="/">FAQs</a>
                 </li>
               </ul>
             </nav>
@@ -114,9 +112,10 @@ const FooterTwo = ({ footerBgClass }) => {
 
           <Col className="footer-single-widget space-mb--50">
             <div className="footer-subscribe-widget">
-              <h2 className="footer-subscribe-widget__title">Subscribe.</h2>
+              <h2 className="footer-subscribe-widget__title">S'abonner.</h2>
               <p className="footer-subscribe-widget__subtitle">
-                Subscribe to our newsletter to receive news on update.
+                Abonnez-vous à notre newsletter pour recevoir des nouvelles sur
+                nos promos et offres.
               </p>
               {/* email subscription */}
               <SubscribeEmailTwo mailchimpUrl="https://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef" />

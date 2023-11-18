@@ -2,17 +2,13 @@ import { Fragment, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
-
-import { BreadcrumbOne } from "../../../components/Breadcrumb";
-import { CategorySlider } from "../../../components/Category";
 import {
     ImageGalleryBottomThumb,
     ProductDescription,
     ProductDescriptionTab
 } from "../../../components/ProductDetails";
+import { ProductSliderTwo } from "../../../components/ProductSlider";
 import Anchor from "../../../components/anchor";
-import { SectionTitleOne } from "../../../components/sectiontitle/";
-import { SIMILAR_PRODUCTS_LABEL } from "../../../config/productLabels";
 import similarProducts from "../../../data/categories/similar-products.json";
 import productsFake from "../../../data/products.json";
 import { getDiscountPrice } from "../../../lib/product";
@@ -45,27 +41,23 @@ const ProductDetail = ({ product }) => {
 
     return (
         <Fragment>
-            {/* breadcrumb */}
-            <BreadcrumbOne
-                pageTitle={product.name}
-                backgroundImage="/assets/images/backgrounds/breadcrumb-bg-1.png"
-            >
-                <ul className="breadcrumb__list">
-                    <li>
-                        <Anchor path="/">
-                            Acceuil
-                        </Anchor>
-                    </li>
-
-                    <li>{product.name}</li>
-                </ul>
-            </BreadcrumbOne>
-
             <Container>
+                <div className="space-pt--70">
+                    <ul className="breadcrumb__list">
+                        <li>
+                            <Anchor path="/">
+                                Acceuil
+                            </Anchor>
+                        </li>
+
+                        <li>{product.name}</li>
+                    </ul>
+                </div>
+
                 {/* product details */}
                 {
                     product &&
-                    <div className="product-details space-mt--r100 space-mb--r100">
+                    <div className="product-details space-mt--50 space-mb--r100">
                         <Row>
                             <Col lg={6} className="space-mb-mobile-only--50">
                                 {/* image gallery bottom thumb */}
@@ -97,27 +89,16 @@ const ProductDetail = ({ product }) => {
                     </div>
                 }
 
+
+
                 <div className="element-wrapper space-mt--r130 space-mb--r130">
-                    <SectionTitleOne title={SIMILAR_PRODUCTS_LABEL}
-                        subtitle="This is where to find your satisfactory products" />
-                    <CategorySlider
-                        categoryData={similarProducts}
-                        spaceBottomClass="space-mb--r100"
-                    />
+                    {/* product slider */}
+                    <ProductSliderTwo products={similarProducts} />
                 </div>
             </Container>
         </Fragment>
     );
 };
-
-/*export async function getStaticPaths() {
-    // get the paths we want to pre render based on products
-    const paths = productsFake.map((product) => ({
-        params: {prd: product.slug}
-    }));
-
-    return {paths, fallback: false};
-}*/
 
 export async function getServerSideProps({ params: { slug } }) {
     // const res = await getData(`product/${id}`);
@@ -127,7 +108,7 @@ export async function getServerSideProps({ params: { slug } }) {
 
     return {
         props: {
-            product: product,
+            product,
         },
     }
 }

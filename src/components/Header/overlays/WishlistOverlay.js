@@ -1,25 +1,22 @@
-import { IoIosClose } from "react-icons/io";
-import CustomScroll from "react-custom-scroll";
-import { useSelector, useDispatch } from "react-redux";
-import clsx from "clsx";
-import Anchor from "../../anchor";
-import { getDiscountPrice } from "../../../lib/product";
-import { deleteFromWishlist } from "../../../store/slices/wishlist-slice";
+import clsx from 'clsx'
+import CustomScroll from 'react-custom-scroll'
+import { IoIosClose } from 'react-icons/io'
+import { useDispatch, useSelector } from 'react-redux'
+import { getDiscountPrice } from '../../../lib/product'
+import { deleteFromWishlist } from '../../../store/slices/wishlist-slice'
+import Anchor from '../../anchor'
 
-const WishlistOverlay = ({
-  activeStatus,
-  getActiveStatus,
-}) => {
-  const dispatch = useDispatch();
-  const { wishlistItems } = useSelector((state) => state.wishlist);
+const WishlistOverlay = ({ activeStatus, getActiveStatus }) => {
+  const dispatch = useDispatch()
+  const { wishlistItems } = useSelector((state) => state.wishlist)
 
   return (
-    <div className={clsx("wishlist-overlay", activeStatus && "active")}>
+    <div className={clsx('wishlist-overlay', activeStatus && 'active')}>
       <div
         className="wishlist-overlay__close"
         onClick={() => {
-          getActiveStatus(false);
-          document.querySelector("body").classList.remove("overflow-hidden");
+          getActiveStatus(false)
+          document.querySelector('body').classList.remove('overflow-hidden')
         }}
       />
       <div className="wishlist-overlay__content">
@@ -27,8 +24,8 @@ const WishlistOverlay = ({
         <button
           className="wishlist-overlay__close-icon"
           onClick={() => {
-            getActiveStatus(false);
-            document.querySelector("body").classList.remove("overflow-hidden");
+            getActiveStatus(false)
+            document.querySelector('body').classList.remove('overflow-hidden')
           }}
         >
           <IoIosClose />
@@ -43,8 +40,8 @@ const WishlistOverlay = ({
                   {wishlistItems.map((product, i) => {
                     const discountedPrice = getDiscountPrice(
                       product.price,
-                      product.discount
-                    ).toFixed(2);
+                      product.discount,
+                    ).toFixed(2)
                     return (
                       <div className="single-wishlist-product" key={i}>
                         <span className="wishlist-close-icon">
@@ -57,19 +54,19 @@ const WishlistOverlay = ({
                           </button>
                         </span>
                         <div className="image">
-                          <Anchor path={`/listing/${product.slug}`}>
-                              <img
-                                src={
-                                  process.env.PUBLIC_URL + product.thumbImage[0]
-                                }
-                                className="img-fluid"
-                                alt=""
-                              />
+                          <Anchor path={`/shop/listing/${product.slug}`}>
+                            <img
+                              src={
+                                process.env.PUBLIC_URL + product.thumbImage[0]
+                              }
+                              className="img-fluid"
+                              alt=""
+                            />
                           </Anchor>
                         </div>
                         <div className="content">
                           <h5>
-                            <Anchor path={`/listing/${product.slug}`}>
+                            <Anchor path={`/shop/listing/${product.slug}`}>
                               {product.name}
                             </Anchor>
                           </h5>
@@ -80,24 +77,22 @@ const WishlistOverlay = ({
                           </p>
                         </div>
                       </div>
-                    );
+                    )
                   })}
                 </CustomScroll>
               </div>
               {/*=======  wishlist buttons  =======*/}
               <div className="wishlist-buttons">
-                <Anchor path="/wishlist">
-                  Voir ma wishlist
-                </Anchor>
+                <Anchor path="/wishlist">Voir ma wishlist</Anchor>
               </div>
             </div>
           ) : (
-            "Aucun article trouvé dans la wishlist"
+            'Aucun article trouvé dans la wishlist'
           )}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default WishlistOverlay;
+export default WishlistOverlay

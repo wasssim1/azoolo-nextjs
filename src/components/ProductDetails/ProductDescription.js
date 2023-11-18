@@ -1,13 +1,19 @@
-import { useState, Fragment } from "react";
-import { IoIosHeartEmpty, IoIosShuffle } from "react-icons/io";
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../store/slices/cart-slice";
-import { addToWishlist, deleteFromWishlist } from "../../store/slices/wishlist-slice";
-import { addToCompare, deleteFromCompare } from "../../store/slices/compare-slice";
-import { ProductRating } from "../Product";
-import Anchor from "../anchor";
-import { getProductCartQuantity } from "../../lib/product";
+import { Fragment, useState } from 'react'
+import { CiDeliveryTruck } from 'react-icons/ci'
+import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
+import { IoIosHeartEmpty } from 'react-icons/io'
+import { PiArrowUUpLeftFill } from 'react-icons/pi'
+import { TbTruckDelivery } from 'react-icons/tb'
+import { useDispatch } from 'react-redux'
+
+import { getProductCartQuantity } from '../../lib/product'
+import { addToCart } from '../../store/slices/cart-slice'
+import {
+  addToWishlist,
+  deleteFromWishlist,
+} from '../../store/slices/wishlist-slice'
+import { ProductRating } from '../Product'
+import Anchor from '../anchor'
 
 const ProductDescription = ({
   product,
@@ -15,50 +21,47 @@ const ProductDescription = ({
   discountedPrice,
   cartItems,
   wishlistItem,
-  compareItem,
 }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const [selectedProductColor, setSelectedProductColor] = useState(
-    product.variation ? product.variation[0].color : ""
-  );
+    product.variation ? product.variation[0].color : '',
+  )
   const [selectedProductSize, setSelectedProductSize] = useState(
-    product.variation ? product.variation[0].size[0].name : ""
-  );
+    product.variation ? product.variation[0].size[0].name : '',
+  )
   const [productStock, setProductStock] = useState(
-    product.variation ? product.variation[0].size[0].stock : product.stock
-  );
-  const [quantityCount, setQuantityCount] = useState(1);
+    product.variation ? product.variation[0].size[0].stock : product.stock,
+  )
+  const [quantityCount, setQuantityCount] = useState(1)
 
   const productCartQty = getProductCartQuantity(
     cartItems,
     product,
     selectedProductColor,
-    selectedProductSize
-  );
+    selectedProductSize,
+  )
 
   return (
     <div className="product-content">
-      {product.rating && product.rating > 0 ? (
+      {product.rating && product.rating > 0 && (
         <div className="product-content__rating-wrap d-block d-sm-flex space-mb--20">
           <div className="product-content__rating space-mr--20">
             <ProductRating ratingValue={product.rating} />
           </div>
           <div className="product-content__rating-count">
-            <a href="#">( {product.ratingCount} customer reviews )</a>
+            <a href="#">( {product.ratingCount} Avis des clients )</a>
           </div>
         </div>
-      ) : (
-        ""
       )}
       <h2 className="product-content__title space-mb--20">{product.name}</h2>
       <div className="product-content__price space-mb--20">
         {product.discount > 0 ? (
           <Fragment>
-            <span className="main-price discounted">${productPrice}</span>
-            <span className="main-price">${discountedPrice}</span>
+            <span className="main-price discounted">{productPrice} TND</span>
+            <span className="main-price">{discountedPrice} TND</span>
           </Fragment>
         ) : (
-          <span className="main-price">${productPrice} </span>
+          <span className="main-price">{productPrice} TND</span>
         )}
       </div>
       <div className="product-content__description space-mb--30">
@@ -68,7 +71,7 @@ const ProductDescription = ({
       {product.variation ? (
         <div className="product-content__size-color">
           <div className="product-content__size space-mb--20">
-            <div className="product-content__size__title">Size</div>
+            <div className="product-content__size__title">Taille</div>
             <div className="product-content__size__content">
               {product.variation &&
                 product.variation.map((single) => {
@@ -81,28 +84,28 @@ const ProductDescription = ({
                               value={singleSize.name}
                               checked={
                                 singleSize.name === selectedProductSize
-                                  ? "checked"
-                                  : ""
+                                  ? 'checked'
+                                  : ''
                               }
                               id={singleSize.name}
                               onChange={() => {
-                                setSelectedProductSize(singleSize.name);
-                                setProductStock(singleSize.stock);
-                                setQuantityCount(1);
+                                setSelectedProductSize(singleSize.name)
+                                setProductStock(singleSize.stock)
+                                setQuantityCount(1)
                               }}
                             />
                             <label htmlFor={singleSize.name}>
                               {singleSize.name}
                             </label>
                           </Fragment>
-                        );
+                        )
                       })
-                    : "";
+                    : ''
                 })}
             </div>
           </div>
           <div className="product-content__color space-mb--20">
-            <div className="product-content__color__title">Color</div>
+            <div className="product-content__color__title">Couleur</div>
             <div className="product-content__color__content">
               {product.variation.map((single, i) => {
                 return (
@@ -113,13 +116,13 @@ const ProductDescription = ({
                       name="product-color"
                       id={single.color}
                       checked={
-                        single.color === selectedProductColor ? "checked" : ""
+                        single.color === selectedProductColor ? 'checked' : ''
                       }
                       onChange={() => {
-                        setSelectedProductColor(single.color);
-                        setSelectedProductSize(single.size[0].name);
-                        setProductStock(single.size[0].stock);
-                        setQuantityCount(1);
+                        setSelectedProductColor(single.color)
+                        setSelectedProductSize(single.size[0].name)
+                        setProductStock(single.size[0].stock)
+                        setQuantityCount(1)
                       }}
                     />
                     <label
@@ -127,13 +130,13 @@ const ProductDescription = ({
                       style={{ backgroundColor: single.colorCode }}
                     ></label>
                   </Fragment>
-                );
+                )
               })}
             </div>
           </div>
         </div>
       ) : (
-        ""
+        ''
       )}
       {product.affiliateLink ? (
         <div className="product-content__quality">
@@ -144,14 +147,14 @@ const ProductDescription = ({
               target="_blank"
               className="lezada-button lezada-button--medium"
             >
-              Buy Now
+              Acheter maintenant
             </a>
           </div>
         </div>
       ) : (
         <Fragment>
           <div className="product-content__quantity space-mb--40">
-            <div className="product-content__quantity__title">Quantity</div>
+            <div className="product-content__quantity__title">Quantité</div>
             <div className="cart-plus-minus">
               <button
                 onClick={() =>
@@ -172,7 +175,7 @@ const ProductDescription = ({
                   setQuantityCount(
                     quantityCount < productStock - productCartQty
                       ? quantityCount + 1
-                      : quantityCount
+                      : quantityCount,
                   )
                 }
                 className="qtybutton"
@@ -186,38 +189,48 @@ const ProductDescription = ({
             {productStock && productStock > 0 ? (
               <button
                 onClick={() =>
-                  dispatch(addToCart({
-                    ...product,
-                    quantity: quantityCount,
-                    selectedProductColor: selectedProductColor ? selectedProductColor : product.selectedProductColor ? product.selectedProductColor : null,
-                    selectedProductSize: selectedProductSize ? selectedProductSize : product.selectedProductSize ? product.selectedProductSize : null
-                  }))
+                  dispatch(
+                    addToCart({
+                      ...product,
+                      quantity: quantityCount,
+                      selectedProductColor: selectedProductColor
+                        ? selectedProductColor
+                        : product.selectedProductColor
+                        ? product.selectedProductColor
+                        : null,
+                      selectedProductSize: selectedProductSize
+                        ? selectedProductSize
+                        : product.selectedProductSize
+                        ? product.selectedProductSize
+                        : null,
+                    }),
+                  )
                 }
                 disabled={productCartQty >= productStock}
                 className="lezada-button lezada-button--medium product-content__cart space-mr--10"
               >
-                Add To Cart
+                Ajouter au panier
               </button>
             ) : (
               <button
                 className="lezada-button lezada-button--medium product-content__ofs space-mr--10"
                 disabled
               >
-                Out of Stock
+                Pas de Stock
               </button>
             )}
 
             <button
               className={`product-content__wishlist space-mr--10 ${
-                wishlistItem !== undefined ? "active" : ""
+                !!wishlistItem ? 'active' : ''
               }`}
               title={
-                wishlistItem !== undefined
-                  ? "Added to wishlist"
-                  : "Add to wishlist"
+                !!wishlistItem
+                  ? 'Ajouter à la Wishlist'
+                  : 'Déjà dans la Wishlist'
               }
               onClick={
-                wishlistItem !== undefined
+                !!wishlistItem
                   ? () => dispatch(deleteFromWishlist(product.id))
                   : () => dispatch(addToWishlist(product))
               }
@@ -225,14 +238,14 @@ const ProductDescription = ({
               <IoIosHeartEmpty />
             </button>
 
-            <button
+            {/* <button
               className={`product-content__compare space-mr--10 ${
-                compareItem !== undefined ? "active" : ""
+                !!compareItem ? 'active' : ''
               }`}
               title={
                 compareItem !== undefined
-                  ? "Added to compare"
-                  : "Add to compare"
+                  ? 'Added to compare'
+                  : 'Add to compare'
               }
               onClick={
                 compareItem !== undefined
@@ -241,26 +254,22 @@ const ProductDescription = ({
               }
             >
               <IoIosShuffle />
-            </button>
+            </button> */}
           </div>
 
           <div className="product-content__other-info space-mt--50">
             <table>
               <tbody>
                 <tr className="single-info">
-                  <td className="title">SKU: </td>
-                  <td className="value">{product.sku}</td>
-                </tr>
-                <tr className="single-info">
-                  <td className="title">Categories: </td>
+                  <td className="title">Catégories: </td>
                   <td className="value">
                     {product.category &&
                       product.category.map((item, index, arr) => {
                         return (
-                          <Anchor path="/shop/left-sidebar" key={index}>
-                              {item + (index !== arr.length - 1 ? ", " : "")}
+                          <Anchor path={`shop/listing`} key={index}>
+                            {item + (index !== arr.length - 1 ? ', ' : '')}
                           </Anchor>
-                        );
+                        )
                       })}
                   </td>
                 </tr>
@@ -270,15 +279,23 @@ const ProductDescription = ({
                     {product.tag &&
                       product.tag.map((item, index, arr) => {
                         return (
-                          <Anchor path="/shop/left-sidebar" key={index}>
-                              {item + (index !== arr.length - 1 ? ", " : "")}
-                          </Anchor>
-                        );
+                          <small key={index}>
+                            {item + (index !== arr.length - 1 ? ', ' : '')}
+                          </small>
+                        )
                       })}
                   </td>
                 </tr>
                 <tr className="single-info">
-                  <td className="title">Share on: </td>
+                  <td className="title">Vendu par: </td>
+                  <td className="value">
+                    <Anchor path={`/shop/vendor/${product.vendor}`}>
+                      {product.vendor}
+                    </Anchor>
+                  </td>
+                </tr>
+                <tr className="single-info">
+                  <td className="title">Partager sur: </td>
                   <td className="value">
                     <ul className="social-icons">
                       <li>
@@ -307,10 +324,38 @@ const ProductDescription = ({
               </tbody>
             </table>
           </div>
+
+          <div className="product-content__other-info space-mt--50">
+            <table>
+              <tbody>
+                <tr className="single-info">
+                  <td className="title">
+                    <TbTruckDelivery /> Livraison rapide:
+                  </td>
+                  <td className="value">48H</td>
+                </tr>
+                <tr className="single-info">
+                  <td className="title">
+                    <CiDeliveryTruck /> Livraison standard:
+                  </td>
+                  <td className="value">1 semaine max</td>
+                </tr>
+                <tr className="single-info"></tr>
+                <tr className="single-info">
+                  <td colSpan={2}>Gratuit à partir de 35.00 TND d'achat</td>
+                </tr>
+                <tr className="single-info">
+                  <td colSpan={2}>
+                    <PiArrowUUpLeftFill /> Retour gratuit sous 7 jours
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </Fragment>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ProductDescription;
+export default ProductDescription

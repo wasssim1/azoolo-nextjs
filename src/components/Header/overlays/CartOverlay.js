@@ -58,7 +58,7 @@ const CartOverlay = ({ activeStatus, getActiveStatus }) => {
                           </button>
                         </span>
                         <div className="image">
-                          <Anchor path={`/listing/${product.slug}`}>
+                          <Anchor path={`/shop/listing/${product.slug}`}>
                             <img
                               src={
                                 process.env.PUBLIC_URL + product.thumbImage[0]
@@ -70,7 +70,7 @@ const CartOverlay = ({ activeStatus, getActiveStatus }) => {
                         </div>
                         <div className="content">
                           <h5>
-                            <Anchor path={`/listing/${product.slug}`}>
+                            <Anchor path={`/shop/listing/${product.slug}`}>
                               {product.name}
                             </Anchor>
                           </h5>

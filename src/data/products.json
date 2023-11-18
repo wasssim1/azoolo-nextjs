@@ -9,9 +9,28 @@
     "new": true,
     "rating": 4,
     "ratingCount": 5,
+    "ratings": [
+      {
+        "user": {
+          "avatar": "/assets/images/user/user1.jpeg",
+          "fullName": "Akrem Haddad"
+        },
+        "date": "18 Nov. 2023",
+        "reviewText": "Merci pour cet article."
+      },
+      {
+        "user": {
+          "avatar": "/assets/images/user/user1.jpeg",
+          "fullName": "Akrem Haddad"
+        },
+        "date": "17 Nov. 2023",
+        "reviewText": "Merci pour cet article."
+      }
+    ],
     "saleCount": 90,
     "category": ["decor"],
     "tag": ["decor"],
+    "vendor": "vendeur_1",
     "variation": [
       {
         "color": "black",

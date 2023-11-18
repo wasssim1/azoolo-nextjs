@@ -1,7 +1,7 @@
-import { Container, Row, Col } from "react-bootstrap";
-import clsx from "clsx";
-import Anchor from "../anchor";
-import Swiper, { SwiperSlide } from "../swiper";
+import clsx from 'clsx'
+import { Col, Container, Row } from 'react-bootstrap'
+import Anchor from '../anchor'
+import Swiper, { SwiperSlide } from '../swiper'
 
 const params = {
   loop: false,
@@ -11,20 +11,22 @@ const params = {
   navigation: true,
   breakpoints: {
     320: {
-      slidesPerView: 1
+      slidesPerView: 1,
     },
     640: {
-      slidesPerView: 2
+      slidesPerView: 2,
     },
     1024: {
-      slidesPerView: 3
-    }
-  }
-};
+      slidesPerView: 3,
+    },
+  },
+}
 
 const CategorySlider = ({ categoryData, spaceBottomClass }) => {
   return (
-    <div className={clsx("product-category-slider-container", spaceBottomClass)}>
+    <div
+      className={clsx('product-category-slider-container', spaceBottomClass)}
+    >
       <Container className="wide">
         <Row>
           <Col lg={12}>
@@ -44,13 +46,16 @@ const CategorySlider = ({ categoryData, spaceBottomClass }) => {
                     </div>
                     <div className="single-category__content single-category__content--two space-mt--25">
                       <div className="title">
-                        <Anchor path="/shop/left-sidebar">
+                        <Anchor path={`/shop/listing/${single.slug}`}>
                           {single.name}
                         </Anchor>
                       </div>
-                      <p className="product-count">{single.count}</p>
+                      <p className="product-count">{single.count}ss</p>
                     </div>
-                    <Anchor path="/shop/left-sidebar" className="banner-link" />
+                    <Anchor
+                      path={`/shop/listing/${single.slug}`}
+                      className="banner-link"
+                    />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -59,7 +64,7 @@ const CategorySlider = ({ categoryData, spaceBottomClass }) => {
         </Row>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default CategorySlider;
+export default CategorySlider
