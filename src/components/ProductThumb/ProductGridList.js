@@ -19,7 +19,6 @@ const ProductGridList = ({
   productPrice,
   cartItem,
   wishlistItem,
-  compareItem,
   bottomSpace,
 }) => {
   const [modalShow, setModalShow] = useState(false)
@@ -215,7 +214,6 @@ const ProductGridList = ({
         productprice={productPrice}
         cartitem={cartItem}
         wishlistitem={wishlistItem}
-        compareitem={compareItem}
       />
     </Fragment>
   )

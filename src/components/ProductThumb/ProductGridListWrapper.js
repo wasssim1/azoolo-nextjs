@@ -7,7 +7,6 @@ import ProductGridList from './ProductGridList'
 const ProductGridWrapper = ({ products, bottomSpace }) => {
   const { cartItems } = useSelector((state) => state.cart)
   const { wishlistItems } = useSelector((state) => state.wishlist)
-  const { compareItems } = useSelector((state) => state.compare)
 
   return (
     <Fragment>
@@ -24,9 +23,6 @@ const ProductGridWrapper = ({ products, bottomSpace }) => {
           const wishlistItem = wishlistItems.find(
             (wishlistItem) => wishlistItem.id === product.id,
           )
-          const compareItem = compareItems.find(
-            (compareItem) => compareItem.id === product.id,
-          )
 
           return (
             <ProductGridList
@@ -36,7 +32,6 @@ const ProductGridWrapper = ({ products, bottomSpace }) => {
               productPrice={productPrice}
               cartItem={cartItem}
               wishlistItem={wishlistItem}
-              compareItem={compareItem}
               bottomSpace={bottomSpace}
             />
           )

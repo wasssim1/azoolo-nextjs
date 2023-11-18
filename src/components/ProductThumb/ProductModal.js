@@ -1,14 +1,10 @@
 import { Fragment, useState } from 'react'
 import { Col, Modal, Row } from 'react-bootstrap'
 import CustomScroll from 'react-custom-scroll'
-import { IoIosHeartEmpty, IoIosShuffle } from 'react-icons/io'
+import { IoIosHeartEmpty } from 'react-icons/io'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductCartQuantity } from '../../lib/product'
 import { addToCart } from '../../store/slices/cart-slice'
-import {
-  addToCompare,
-  deleteFromCompare,
-} from '../../store/slices/compare-slice'
 import {
   addToWishlist,
   deleteFromWishlist,
@@ -27,7 +23,6 @@ const ProductModal = ({
   discountedprice,
   productprice,
   wishlistitem,
-  compareitem,
 }) => {
   const dispatch = useDispatch()
   const { cartItems } = useSelector((state) => state.cart)

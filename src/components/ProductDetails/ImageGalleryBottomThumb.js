@@ -80,6 +80,7 @@ const ImageGalleryBottomThumb = ({ product, wishlistItem }) => {
                   ? () => dispatch(deleteFromWishlist(product.id))
                   : () => dispatch(addToWishlist(product))
               }
+              className={`wishlist-icon ${!!wishlistItem ? 'active' : ''}`}
             >
               {!!wishlistItem ? <IoIosHeart /> : <IoIosHeartEmpty />}
             </button>

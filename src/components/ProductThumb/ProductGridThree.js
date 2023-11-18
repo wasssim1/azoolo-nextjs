@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { Fragment, useState } from 'react'
-import { IoIosHeart, IoIosHeartEmpty, IoIosSearch } from 'react-icons/io'
+import { IoIosEye, IoIosHeart, IoIosHeartEmpty } from 'react-icons/io'
 import { useDispatch } from 'react-redux'
 import { Tooltip } from 'react-tippy'
 import { addToCart } from '../../store/slices/cart-slice'
@@ -71,6 +71,7 @@ const ProductGridThree = ({
               duration={200}
             >
               <button
+                className={`wishlist-icon ${!!wishlistItem ? 'active' : ''}`}
                 onClick={
                   !!wishlistItem
                     ? () => dispatch(deleteFromWishlist(product.id))
@@ -94,7 +95,7 @@ const ProductGridThree = ({
                 onClick={() => setModalShow(true)}
                 className="d-none d-lg-block"
               >
-                <IoIosSearch />
+                <IoIosEye />
               </button>
             </Tooltip>
           </div>
