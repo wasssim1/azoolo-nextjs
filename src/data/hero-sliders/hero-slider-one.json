@@ -2,22 +2,22 @@
   {
     "id": "1",
     "image": "/assets/images/hero-slider/hero-slider-one/1.jpg",
-    "subtitle": "ACCESSORIES",
-    "title": "Bottle Grinder, <br> Small, 2-Piece",
-    "url": "/shop/left-sidebar"
+    "subtitle": "FASHION",
+    "title": "Manteau classique, <br> Polo Ralph Lauren",
+    "url": "/shop/listing/"
   },
   {
     "id": "2",
     "image": "/assets/images/hero-slider/hero-slider-one/2.jpg",
-    "subtitle": "HANDMADE",
-    "title": "Large, <br> Food board",
-    "url": "/shop/left-sidebar"
+    "subtitle": "JEANS",
+    "title": "Jeans, <br> Levi's",
+    "url": "/shop/listing/Ø"
   },
   {
     "id": "3",
     "image": "/assets/images/hero-slider/hero-slider-one/3.jpg",
     "subtitle": "ACCESSORIES",
     "title": "Tribeca Hubert, <br> Pendant",
-    "url": "/shop/left-sidebar"
+    "url": "/shop/listing/"
   }
 ]

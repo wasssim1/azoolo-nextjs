@@ -145,6 +145,9 @@ export async function getServerSideProps({ params: { categories } }) {
      * TODO:
      * validate categories on server
      * if not valid -> set a flag and render category not found warning message and redirect to 404
+    return {
+        notFound: true,
+    };
      */
 
     const products = await productsFake;
