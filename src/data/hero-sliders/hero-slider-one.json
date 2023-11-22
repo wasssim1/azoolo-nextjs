@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "image": "/assets/images/hero-slider/hero-slider-one/1.jpg",
+    "subtitle": "FASHION",
+    "title": "Manteau classique, <br> Polo Ralph Lauren",
+    "url": "/shop/listing/"
+  },
+  {
+    "id": "2",
+    "image": "/assets/images/hero-slider/hero-slider-one/2.jpg",
+    "subtitle": "JEANS",
+    "title": "Jeans, <br> Levi's",
+    "url": "/shop/listing/Ø"
+  },
+  {
+    "id": "3",
+    "image": "/assets/images/hero-slider/hero-slider-one/3.jpg",
+    "subtitle": "ACCESSORIES",
+    "title": "Tribeca Hubert, <br> Pendant",
+    "url": "/shop/listing/"
+  }
+]
