@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 
 import { Fragment } from 'react';
-import { CategoryGrid, CategoryGridFour } from '../components/Category';
+import { CategoryGrid } from '../components/Category';
 import { ImageCta } from '../components/Cta';
 import { HeroSliderOne } from '../components/HeroSlider';
-import AccessoriesContent from '../components/HomeContent/AccessoriesContent';
+import BestSellingContent from '../components/HomeContent/AccessoriesContent';
 import { ProductTab } from '../components/ProductTab';
 import heroSliderData from '../data/hero-sliders/hero-slider-one.json';
 import imageCtaData from '../data/image-cta/image-cta-one.json';
@@ -31,7 +31,7 @@ const Home = (props) => {
       <hr />
       3<CategoryGridThree />
       <hr /> */}
-      <CategoryGridFour />
+      {/* <CategoryGridFour /> */}
       <br />
       {/* <hr />
       5<CategoryGridFive />
@@ -47,7 +47,7 @@ const Home = (props) => {
       />
 
       {/* Best Selling Producta */}
-      <AccessoriesContent />
+      <BestSellingContent />
 
       {/* image cta */}
       <ImageCta
@@ -63,7 +63,9 @@ const Home = (props) => {
 export default Home;
 
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:3003/api/product?slug=prd_1');
+  const url = `${process.env.PUBLIC_URL}/api/product?slug=prd_1`;
+  console.log({ url });
+  const res = await fetch(url);
   console.log({ res: await res.json() });
 
   return {

@@ -2,7 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import clsx from "clsx";
 import Anchor from "../anchor";
 
-const CategoryGrid = ({ spaceBottomClass }) => {
+const CategoryGrid = ({ data, spaceBottomClass }) => {
   return (
     <div className={clsx("product-category-container", spaceBottomClass)}>
       <Container>
@@ -24,12 +24,12 @@ const CategoryGrid = ({ spaceBottomClass }) => {
                   <div className="single-category__content single-category__content--three">
                     <div className="title">
                       <p>Women</p>
-                      <Anchor path="/shop/left-sidebar">
+                      <Anchor path="/shop/listing">
                         + Store
                       </Anchor>
                     </div>
                   </div>
-                  <Anchor path="/shop/left-sidebar" className="banner-link"/>
+                  <Anchor path="/shop/listing" className="banner-link"/>
                 </div>
               </Col>
               <Col md={6}>
@@ -47,12 +47,12 @@ const CategoryGrid = ({ spaceBottomClass }) => {
                   <div className="single-category__content single-category__content--three">
                     <div className="title">
                       <p>Shoes</p>
-                      <Anchor path="/shop/left-sidebar">
+                      <Anchor path="/shop/listing">
                         + Store
                       </Anchor>
                     </div>
                   </div>
-                  <Anchor path="/shop/left-sidebar" className="banner-link"/>
+                  <Anchor path="/shop/listing" className="banner-link"/>
                 </div>
               </Col>
               <Col md={6}>
@@ -70,12 +70,12 @@ const CategoryGrid = ({ spaceBottomClass }) => {
                   <div className="single-category__content single-category__content--three">
                     <div className="title">
                       <p>Sunglass</p>
-                      <Anchor path="/shop/left-sidebar">
+                      <Anchor path="/shop/listing">
                         + Store
                       </Anchor>
                     </div>
                   </div>
-                  <Anchor path="/shop/left-sidebar" className="banner-link"/>
+                  <Anchor path="/shop/listing" className="banner-link"/>
                 </div>
               </Col>
             </Row>
@@ -97,12 +97,12 @@ const CategoryGrid = ({ spaceBottomClass }) => {
                   <div className="single-category__content single-category__content--three">
                     <div className="title">
                       <p>Lookbook ss-20</p>
-                      <Anchor path="/shop/left-sidebar">
+                      <Anchor path="/shop/listing">
                         + Store
                       </Anchor>
                     </div>
                   </div>
-                  <Anchor path="/shop/left-sidebar" className="banner-link"/>
+                  <Anchor path="/shop/listing" className="banner-link"/>
                 </div>
               </Col>
               <Col lg={12}>
@@ -120,12 +120,12 @@ const CategoryGrid = ({ spaceBottomClass }) => {
                   <div className="single-category__content single-category__content--three">
                     <div className="title">
                       <p>Men</p>
-                      <Anchor path="/shop/left-sidebar">
+                      <Anchor path="/shop/listing">
                         + Store
                       </Anchor>
                     </div>
                   </div>
-                  <Anchor path="/shop/left-sidebar" className="banner-link"/>
+                  <Anchor path="/shop/listing" className="banner-link"/>
                 </div>
               </Col>
             </Row>

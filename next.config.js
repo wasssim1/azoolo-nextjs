@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    PUBLIC_URL: ""
+    PUBLIC_URL: process.env.PUBLIC_URL,
   },
 
   async redirects() {
@@ -15,6 +15,6 @@ module.exports = {
         destination: '/',
         permanent: true,
       },
-    ]
-  }
+    ];
+  },
 };
