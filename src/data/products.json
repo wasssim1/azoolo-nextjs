@@ -2,8 +2,8 @@
   {
     "id": "1",
     "sku": "asdf101",
-    "name": "Lorem ipsum decor one",
-    "slug": "lorem-ipsum-decor-one",
+    "name": "Article 1",
+    "slug": "article-1",
     "price": 17,
     "discount": 10,
     "new": true,

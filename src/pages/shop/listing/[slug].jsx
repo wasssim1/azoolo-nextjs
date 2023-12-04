@@ -13,7 +13,7 @@ import similarProducts from "../../../data/categories/similar-products.json";
 import productsFake from "../../../data/products.json";
 import { getDiscountPrice } from "../../../lib/product";
 
-const ProductDetail = ({ product }) => {
+export default function ProductDetail({ product }) {
 
     useEffect(() => {
         document.querySelector("body").classList.remove("overflow-hidden");
@@ -100,17 +100,19 @@ const ProductDetail = ({ product }) => {
     );
 };
 
-export async function getServerSideProps({ params: { slug } }) {
-    // const res = await getData(`product/${id}`);
 
-    const product = await productsFake?.find(p => p.slug === slug) || null;
-    console.log(product.name)
+export async function getStaticPaths() {
+    // get the paths we want to pre render based on products
+    const paths = productsFake.map((product) => ({
+        params: { slug: product.slug }
+    }));
 
-    return {
-        props: {
-            product,
-        },
-    }
+    return { paths, fallback: false };
 }
 
-export default ProductDetail;
+export async function getStaticProps({ params }) {
+    // get product data based on slug
+    const product = productsFake.filter((single) => single.slug === params.slug)[0];
+
+    return { props: { product } };
+}

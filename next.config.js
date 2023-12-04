@@ -11,7 +11,7 @@ module.exports = {
         permanent: true,
       },
       {
-        source: '/lisitng',
+        source: '/shop/listing',
         destination: '/',
         permanent: true,
       },

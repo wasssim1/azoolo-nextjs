@@ -27,7 +27,7 @@ const ProductGridThree = ({
       <div className={clsx('product-grid', bottomSpace)}>
         {/*=======  single product image  =======*/}
         <div className="product-grid__image">
-          <Anchor path={`/shop/lisitng/${product.slug}`} className="image-wrap">
+          <Anchor path={`/shop/listing/${product.slug}`} className="image-wrap">
             <img
               src={process.env.PUBLIC_URL + product.thumbImage[0]}
               className="img-fluid"
@@ -105,7 +105,7 @@ const ProductGridThree = ({
         <div className="product-grid__content">
           <div className="title">
             <h3>
-              <Anchor path={`/shop/lisitng/${product.slug}`}>
+              <Anchor path={`/shop/listing/${product.slug}`}>
                 {product.name}
               </Anchor>
             </h3>
@@ -115,7 +115,7 @@ const ProductGridThree = ({
                 Acheter maintenant
               </a>
             ) : product.variation && product.variation.length >= 1 ? (
-              <Anchor path={`/shop/lisitng/${product.slug}`}>Choisir</Anchor>
+              <Anchor path={`/shop/listing/${product.slug}`}>Choisir</Anchor>
             ) : product.stock && product.stock > 0 ? (
               <button
                 onClick={() => dispatch(addToCart(product))}
