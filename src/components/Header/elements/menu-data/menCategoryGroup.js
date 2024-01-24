@@ -1,8 +1,8 @@
 const SUB_GROUP_1 = [
   {
-    id: 'decor',
-    label: 'Decor',
-    path: '/category/decor',
+    id: 'shirt',
+    label: 'Chemises',
+    path: '/shop/men/clothing/shirts',
     imgSrc: '/assets/images/home-preview/decor.jpg',
   },
   {
@@ -22,7 +22,8 @@ const SUB_GROUP_1 = [
 const MENU_SUB_GROUPS = [
   {
     key: 'menu-sub-grp-2-1',
-    label: 'Sug Grp 1',
+    label: 'Vêtements',
+    path: '/shop/men/clothing',
     subGroupList: SUB_GROUP_1,
   },
   {

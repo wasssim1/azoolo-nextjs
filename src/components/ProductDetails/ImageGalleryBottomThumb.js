@@ -106,7 +106,7 @@ const ImageGalleryBottomThumb = ({ product, wishlistItem }) => {
                   <img
                     src={process.env.PUBLIC_URL + image}
                     className="img-fluid"
-                    alt=""
+                    alt={product.name}
                   />
                 </div>
               </SwiperSlide>
